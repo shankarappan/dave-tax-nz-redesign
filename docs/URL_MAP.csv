@@ -1,0 +1,19 @@
+current_url,proposed_destination,status,notes
+https://davetaxnz.nz/,/,mapped,Homepage
+https://davetaxnz.nz/about-dave/,/#about,mapped,Preserve with a permanent redirect only after content approval
+https://davetaxnz.nz/student-loan-negotiations/,/#expertise,mapped,Needs a dedicated long-form migration before production
+https://davetaxnz.nz/ird-disputes-tax-penalties-negotiation/,/#expertise,mapped,Needs a dedicated long-form migration before production
+https://davetaxnz.nz/testimonials/,/testimonials/,mapped,Full exact archive still requires approval
+https://davetaxnz.nz/articles-advice/,/articles-media/,mapped,Archive destination
+https://davetaxnz.nz/contact/,/#contact,mapped,Booking/form system still requires confirmation
+https://davetaxnz.nz/book-a-consultation/,/book-a-consultation/,hold,Current external booking page retained until replacement form is approved and tested
+https://davetaxnz.nz/2026/07/28/overseas-student-loan-default-deal/,/articles-media/overseas-student-loan-default-deal/,mapped,Source article must remain accessible
+https://davetaxnz.nz/2026/07/19/nz-student-loan-border-arrest/,/articles-media/student-loan-border-arrest/,mapped,Source article must remain accessible
+https://davetaxnz.nz/2026/07/01/ird-tax-debt-rehabilitation/,/articles-media/ird-tax-debt-rehabilitation/,mapped,Source article must remain accessible
+https://davetaxnz.nz/2026/08/06/nz-crypto-tax-disposals/,/articles-media/nz-crypto-tax-disposals/,mapped,Source article must remain accessible
+https://davetaxnz.nz/2026/07/21/ird-statutory-demand-critical-10-day-guide/,/articles-media/ird-statutory-demand-critical-10-day-guide/,mapped,Source article must remain accessible
+https://davetaxnz.nz/2025/12/19/ird-tax-debt-negotiation-beats-liquidation/,,inventory-required,Do not redirect until content decision is approved
+https://davetaxnz.nz/2026/01/13/dave-ananth-commentary-on-student-loan-enforcement/,,inventory-required,Do not redirect until source relationship is verified
+https://davetaxnz.nz/2026/01/15/student-loan-interest-dave-ananth-analysis/,,inventory-required,Do not redirect until content decision is approved
+https://davetaxnz.nz/category/student-loans/,/articles-media/?subject=Student%20Loans,proposed,Query-state implementation required before redirect
+

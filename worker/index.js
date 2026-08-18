@@ -7,9 +7,16 @@ export default {
       return response;
     }
 
-    const indexUrl = new URL(request.url);
-    indexUrl.pathname = "/index.html";
-    indexUrl.search = "";
-    return env.ASSETS.fetch(new Request(indexUrl, request));
+    const routeUrl = new URL(request.url);
+    routeUrl.pathname = `${routeUrl.pathname.replace(/\/$/, "")}/index.html`;
+    routeUrl.search = "";
+    const routeResponse = await env.ASSETS.fetch(new Request(routeUrl, request));
+    if (routeResponse.status !== 404) return routeResponse;
+
+    const notFoundUrl = new URL(request.url);
+    notFoundUrl.pathname = "/404.html";
+    notFoundUrl.search = "";
+    const notFound = await env.ASSETS.fetch(new Request(notFoundUrl, request));
+    return new Response(notFound.body, { status: 404, headers: notFound.headers });
   },
 };

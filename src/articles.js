@@ -1,65 +1,15 @@
-// This is the single automation-ready source for the media archive. A future
-// workflow can append records from an RSS feed, CMS, spreadsheet or media monitor.
-// Keep exact publisher titles and direct source URLs; do not invent outcomes.
+// Single structured source for the archive. Keep publisher titles, dates and
+// source URLs exact. Never infer that Dave was interviewed or quoted.
 export const articles = [
-  {
-    collection: "RNZ Interviews",
-    publication: "RNZ",
-    relationship: "RNZ coverage about tax debt and Inland Revenue",
-    date: "11 August 2026",
-    isoDate: "2026-08-11",
-    title: "Over half a million people owe tax. How did this happen?",
-    summary: "RNZ examines how billions of dollars in tax debt accumulated and what Inland Revenue’s growing debt book means for taxpayers.",
-    url: "https://www.rnz.co.nz/news/business/957513/over-half-a-million-people-owe-tax-how-did-this-happen",
-  },
-  {
-    collection: "Student Loan Articles",
-    publication: "DaveTaxNZ",
-    relationship: "Written by Dave Ananth",
-    date: "28 July 2026",
-    isoDate: "2026-07-28",
-    title: "Doctor’s $180k Settlement: Resolving an Overseas Student Loan Default",
-    summary: "A case-based discussion of negotiating with Inland Revenue after a long-term overseas student-loan default.",
-    url: "https://davetaxnz.nz/2026/07/28/overseas-student-loan-default-deal/",
-  },
-  {
-    collection: "Student Loan Articles",
-    publication: "DaveTaxNZ",
-    relationship: "Written by Dave Ananth",
-    date: "19 July 2026",
-    isoDate: "2026-07-19",
-    title: "NZ Student Loan Border Arrest: What Overseas Borrowers Need to Know",
-    summary: "What recent enforcement activity may mean for overseas borrowers and why each person’s risks must be assessed individually before travel.",
-    url: "https://davetaxnz.nz/2026/07/19/nz-student-loan-border-arrest/",
-  },
-  {
-    collection: "RNZ Interviews",
-    publication: "RNZ",
-    relationship: "Quotes Dave Ananth",
-    date: "1 July 2026",
-    isoDate: "2026-07-01",
-    title: "What should you do about overdue tax?",
-    summary: "Dave discusses increased Inland Revenue enforcement and why taxpayers and viable businesses should engage early and explore a practical proposal.",
-    url: "https://www.rnz.co.nz/news/personal-finance/650497/what-should-you-do-about-overdue-tax",
-  },
-  {
-    collection: "IRD Tax-Debt Commentary",
-    publication: "DaveTaxNZ",
-    relationship: "Written by Dave Ananth",
-    date: "1 July 2026",
-    isoDate: "2026-07-01",
-    title: "IRD Tax Debt Crackdown: Why We Need Business Rehabilitation",
-    summary: "Commentary on increased Inland Revenue enforcement and the limited role of practical tax-debt negotiation for viable businesses.",
-    url: "https://davetaxnz.nz/2026/07/01/ird-tax-debt-rehabilitation/",
-  },
-  {
-    collection: "Interest.co.nz Commentary",
-    publication: "Interest.co.nz",
-    relationship: "Quotes Dave Ananth",
-    date: "2026",
-    isoDate: "2026",
-    title: "Overseas student loan debt is keeping skilled Kiwis from returning home",
-    summary: "Dave comments on the human and economic effect of growing overseas student-loan balances and the importance of addressing them.",
-    url: "https://www.interest.co.nz/business/138466/dave-ananth-says-overseas-student-loan-problem-not-just-about-losing-money-its-also",
-  },
+  { slug: "rnz-half-a-million-people-owe-tax", subject: "IRD Tax Debt", type: "Media Coverage", publication: "RNZ", relationship: "Coverage about tax debt and Inland Revenue", date: "11 August 2026", isoDate: "2026-08-11", title: "Over half a million people owe tax. How did this happen?", summary: "RNZ examines how tax debt accumulated and what Inland Revenue’s debt book means for taxpayers.", url: "https://www.rnz.co.nz/news/business/957513/over-half-a-million-people-owe-tax-how-did-this-happen" },
+  { slug: "overseas-student-loan-default-deal", subject: "Student Loans", type: "Articles by Dave", publication: "DaveTaxNZ", relationship: "Written by Dave Ananth", date: "28 July 2026", isoDate: "2026-07-28", title: "Doctor’s $180k Settlement: Resolving an Overseas Student Loan Default", summary: "A case-based discussion of an overseas student-loan matter. Past outcomes do not guarantee future results.", url: "https://davetaxnz.nz/2026/07/28/overseas-student-loan-default-deal/" },
+  { slug: "student-loan-border-arrest", subject: "Student Loans", type: "Articles by Dave", publication: "DaveTaxNZ", relationship: "Written by Dave Ananth", date: "19 July 2026", isoDate: "2026-07-19", title: "NZ Student Loan Border Arrest: What Overseas Borrowers Need to Know", summary: "A discussion of enforcement activity and why each overseas borrower’s position must be assessed individually before travel.", url: "https://davetaxnz.nz/2026/07/19/nz-student-loan-border-arrest/" },
+  { slug: "rnz-overdue-tax", subject: "IRD Tax Debt", type: "Media Interviews", publication: "RNZ", relationship: "Quotes Dave Ananth", date: "1 July 2026", isoDate: "2026-07-01", title: "What should you do about overdue tax?", summary: "RNZ reports on Inland Revenue enforcement and practical steps for taxpayers with overdue tax.", url: "https://www.rnz.co.nz/news/personal-finance/650497/what-should-you-do-about-overdue-tax" },
+  { slug: "ird-tax-debt-rehabilitation", subject: "Tax Policy", type: "Articles by Dave", publication: "DaveTaxNZ", relationship: "Written by Dave Ananth", date: "1 July 2026", isoDate: "2026-07-01", title: "IRD Tax Debt Crackdown: Why We Need Business Rehabilitation", summary: "Commentary on Inland Revenue enforcement and practical tax-debt negotiation for viable businesses.", url: "https://davetaxnz.nz/2026/07/01/ird-tax-debt-rehabilitation/" },
+  { slug: "interest-overseas-student-loans", subject: "Student Loans", type: "Media Coverage", publication: "Interest.co.nz", relationship: "Quotes Dave Ananth", date: "2026", isoDate: "2026", title: "Overseas student loan debt is keeping skilled Kiwis from returning home", summary: "Interest.co.nz reports on growing overseas student-loan balances and their effect on New Zealanders abroad.", url: "https://www.interest.co.nz/business/138466/dave-ananth-says-overseas-student-loan-problem-not-just-about-losing-money-its-also" },
+  { slug: "nz-crypto-tax-disposals", subject: "Crypto Tax", type: "Articles by Dave", publication: "DaveTaxNZ", relationship: "Written by Dave Ananth", date: "6 August 2026", isoDate: "2026-08-06", title: "NZ Crypto Tax Disposals: Why Every Trade and Swap Triggers Income Tax", summary: "A discussion of New Zealand tax treatment for crypto trades, swaps and sales.", url: "https://davetaxnz.nz/2026/08/06/nz-crypto-tax-disposals/" },
+  { slug: "ird-statutory-demand-critical-10-day-guide", subject: "IRD Tax Debt", type: "Articles by Dave", publication: "DaveTaxNZ", relationship: "Written by Dave Ananth", date: "21 July 2026", isoDate: "2026-07-21", title: "Received an IRD Statutory Demand? Critical Steps for the First 10 Days", summary: "A guide to deadlines and initial steps for New Zealand directors who receive an Inland Revenue statutory demand.", url: "https://davetaxnz.nz/2026/07/21/ird-statutory-demand-critical-10-day-guide/" },
 ];
+
+export const subjects = ["Student Loans", "IRD Tax Debt", "Tax Policy", "Crypto Tax", "Other Commentary"];
+export const mediaTypes = ["Articles by Dave", "Media Interviews", "Media Coverage", "Community Columns", "Podcasts"];

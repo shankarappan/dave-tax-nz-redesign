@@ -18,7 +18,7 @@ test("serves existing static assets without a fallback", async () => {
   assert.deepEqual(calls, ["/assets/app.js"]);
 });
 
-test("falls back to index.html for an unknown app route", async () => {
+test("serves a prerendered nested route", async () => {
   const calls = [];
   const response = await worker.fetch(
     new Request("https://example.test/flow/step-two?source=share", {
@@ -29,8 +29,8 @@ test("falls back to index.html for an unknown app route", async () => {
         fetch: async (request) => {
           const url = new URL(request.url);
           calls.push(url.pathname + url.search);
-          return new Response(url.pathname === "/index.html" ? "app" : "missing", {
-            status: url.pathname === "/index.html" ? 200 : 404,
+          return new Response(url.pathname === "/flow/step-two/index.html" ? "page" : "missing", {
+            status: url.pathname === "/flow/step-two/index.html" ? 200 : 404,
           });
         },
       },
@@ -38,7 +38,14 @@ test("falls back to index.html for an unknown app route", async () => {
   );
 
   assert.equal(response.status, 200);
-  assert.deepEqual(calls, ["/flow/step-two?source=share", "/index.html"]);
+  assert.deepEqual(calls, ["/flow/step-two?source=share", "/flow/step-two/index.html"]);
+});
+
+test("returns the custom 404 document with a 404 status", async () => {
+  const calls = [];
+  const response = await worker.fetch(new Request("https://example.test/unknown", { headers: { accept: "text/html" } }), { ASSETS: { fetch: async (request) => { const path = new URL(request.url).pathname; calls.push(path); return new Response(path === "/404.html" ? "not found" : "missing", { status: path === "/404.html" ? 200 : 404 }); } } });
+  assert.equal(response.status, 404);
+  assert.deepEqual(calls, ["/unknown", "/unknown/index.html", "/404.html"]);
 });
 
 test("does not turn missing API or write requests into the app shell", async () => {
