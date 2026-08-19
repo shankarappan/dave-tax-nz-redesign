@@ -19,14 +19,14 @@ await build({
 const bundle = path.join(ssrDir, "App.js");
 const { App } = await import(`${pathToFileURL(bundle).href}?v=${Date.now()}`);
 const template = readFileSync(path.join(clientDir, "index.html"), "utf8");
-const stagingOrigin = "https://dave-ananth-tax-barrister.shankarappan.chatgpt.site";
+const siteOrigin = "https://davetaxnz.nz";
 
 const pages = [
   { path: "", title: "Student Loan Lawyer NZ | IRD Negotiator | Dave Ananth", description: "Overseas with New Zealand student-loan debt? Dave Ananth advises on IRD negotiations, penalties, repayment proposals and enforcement risks." },
   { path: "articles-media", title: "Articles & Media Archive | Dave Ananth", description: "Search Dave Ananth’s articles, interviews and media coverage by subject and publication type." },
   { path: "testimonials", title: "Client Testimonials | Dave Ananth", description: "Source-approved client experiences concerning Dave Ananth’s student-loan work." },
   { path: "terms", title: "Terms of Use | DaveTaxNZ", description: "Terms governing use of the DaveTaxNZ professional information, publication and media platform." },
-  { path: "privacy", title: "Privacy Statement | DaveTaxNZ", description: "Staging privacy statement for the DaveTaxNZ website, prepared for New Zealand client review." },
+  { path: "privacy", title: "Privacy Statement | DaveTaxNZ", description: "How DaveTaxNZ handles information provided through this website and its contact channels." },
   { path: "legal-disclaimer", title: "Legal & Engagement Disclaimer | DaveTaxNZ", description: "Important information about general website content, contact, confidentiality and formal legal engagement." },
 ];
 
@@ -34,19 +34,19 @@ for (const article of articles) pages.push({ path: `articles-media/${article.slu
 
 function pageHtml(page) {
   const pathname = `/${page.path}${page.path ? "/" : ""}`;
-  const url = `${stagingOrigin}${pathname}`;
+  const url = `${siteOrigin}${pathname}`;
   const matchingArticle = articles.find((article) => page.path === `articles-media/${article.slug}`);
   const schema = matchingArticle ? {
     "@context": "https://schema.org",
     "@graph": [
       { "@type": "Article", headline: matchingArticle.title, datePublished: matchingArticle.isoDate, author: matchingArticle.type === "Articles by Dave" ? { "@type": "Person", name: "Dave Ananth" } : { "@type": "Organization", name: matchingArticle.publication }, publisher: { "@type": "Organization", name: matchingArticle.publication }, mainEntityOfPage: url },
-      { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${stagingOrigin}/` }, { "@type": "ListItem", position: 2, name: "Articles & Media", item: `${stagingOrigin}/articles-media/` }, { "@type": "ListItem", position: 3, name: matchingArticle.title, item: url }] },
+      { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${siteOrigin}/` }, { "@type": "ListItem", position: 2, name: "Articles & Media", item: `${siteOrigin}/articles-media/` }, { "@type": "ListItem", position: 3, name: matchingArticle.title, item: url }] },
     ],
   } : {
     "@context": "https://schema.org",
     "@graph": [
-      { "@type": "WebSite", name: "DaveTaxNZ", url: `${stagingOrigin}/` },
-      { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${stagingOrigin}/` }, ...(page.path ? [{ "@type": "ListItem", position: 2, name: page.title.split(" | ")[0], item: url }] : [])] },
+      { "@type": "WebSite", name: "DaveTaxNZ", url: `${siteOrigin}/` },
+      { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${siteOrigin}/` }, ...(page.path ? [{ "@type": "ListItem", position: 2, name: page.title.split(" | ")[0], item: url }] : [])] },
     ],
   };
   const content = renderToStaticMarkup(React.createElement(App, { initialPath: pathname }));
@@ -64,9 +64,31 @@ for (const page of pages) {
   writeFileSync(destination, pageHtml(page));
 }
 
+const redirects = [
+  ["book-a-consultation", "/#contact"],
+  ["student-loan-negotiations", "/#expertise"],
+  ["ird-disputes-tax-penalties-negotiation", "/#expertise"],
+  ...articles
+    .filter((article) => article.publication === "DaveTaxNZ")
+    .map((article) => [new URL(article.url).pathname.replace(/^\//, "").replace(/\/$/, ""), `/articles-media/${article.slug}/`]),
+];
+
+function redirectHtml(target) {
+  const absoluteTarget = new URL(target, siteOrigin).href;
+  return `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, follow"><link rel="canonical" href="${absoluteTarget}"><meta http-equiv="refresh" content="0;url=${absoluteTarget}"><title>Page moved | DaveTaxNZ</title><script>location.replace(${JSON.stringify(absoluteTarget)});</script></head><body><p>This page has moved to <a href="${absoluteTarget}">${absoluteTarget}</a>.</p></body></html>`;
+}
+
+for (const [legacyPath, target] of redirects) {
+  const destination = path.join(clientDir, legacyPath, "index.html");
+  mkdirSync(path.dirname(destination), { recursive: true });
+  writeFileSync(destination, redirectHtml(target));
+}
+
 const notFound = { path: "missing", title: "Page not found | DaveTaxNZ", description: "The requested DaveTaxNZ page could not be found." };
 writeFileSync(path.join(clientDir, "404.html"), pageHtml(notFound));
-writeFileSync(path.join(clientDir, "robots.txt"), "User-agent: *\nDisallow: /\n");
+writeFileSync(path.join(clientDir, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${siteOrigin}/sitemap.xml\n`);
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.map((page) => `  <url><loc>${siteOrigin}/${page.path ? `${page.path}/` : ""}</loc></url>`).join("\n")}\n</urlset>\n`;
+writeFileSync(path.join(clientDir, "sitemap.xml"), sitemap);
 rmSync(ssrDir, { recursive: true, force: true });
 
-console.log(`Prerendered ${pages.length} substantive HTML routes plus 404.html`);
+console.log(`Prerendered ${pages.length} substantive HTML routes, ${redirects.length} legacy redirects, sitemap.xml and 404.html`);
