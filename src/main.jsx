@@ -1,5 +1,5 @@
 import React from "react";
-import { createRoot, hydrateRoot } from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import { App } from "./App.jsx";
 import "./styles.css";
 
@@ -10,8 +10,12 @@ const app = (
   </React.StrictMode>
 );
 
-if (container.hasChildNodes()) hydrateRoot(container, app);
-else createRoot(container).render(app);
+// Cloudflare may normalise the prerendered HTML before delivery. Mount the
+// interactive app cleanly so those edge transformations cannot cause a
+// production hydration mismatch while the static HTML remains available to
+// crawlers and no-JavaScript visitors.
+container.replaceChildren();
+createRoot(container).render(app);
 
 document.addEventListener("click", (event) => {
   const link = event.target.closest("[data-event]");
