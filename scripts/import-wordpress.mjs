@@ -29,7 +29,7 @@ const classifications = {
   "dave-ananth-student-loan-enforcement-newstalk": { subject: "Student Loans", type: "Media Coverage", publication: "Newstalk ZB", relationship: "Coverage featuring commentary from Dave Ananth", sourceUrl: "https://www.newstalkzb.co.nz/on-air/christchurch/canterbury-mornings-with-john-macdonald/opinion/john-macdonald-the-hardline-stance-on-student-loans-is-backfiring/", legacyAliases: ["https://davetaxnz.nz/2026/01/13/dave-ananth-commentary-on-student-loan-enforcement/"] },
   "ird-tax-debt-commercial-judgment": { subject: "IRD Tax Debt" },
   "ird-tax-debt-negotiation-beats-liquidation": { subject: "IRD Tax Debt" },
-  "ird-compliance-return-kpi-impact-on-nz-taxpayers": { subject: "IRD Tax Debt", sourceUrl: "https://www.stacehammond.co.nz/tax-kpi-ird-compliance-return-new-zealand-impact/", legacyAliases: ["https://davetaxnz.nz/2025/12/04/when-tax-becomes-a-kpi-irds-11-81-return-on-compliance-and-what-it-means-for-ordinary-new-zealanders/"] },
+  "ird-compliance-return-kpi-impact-on-nz-taxpayers": { subject: "IRD Tax Debt", legacyAliases: ["https://davetaxnz.nz/2025/12/04/when-tax-becomes-a-kpi-irds-11-81-return-on-compliance-and-what-it-means-for-ordinary-new-zealanders/"] },
 };
 
 const mediaById = new Map(media.map((item) => [item.id, item]));
@@ -104,6 +104,9 @@ function cleanContent(html) {
     },
   });
   cleaned = cleaned
+    // The former Stace Hammond publication URLs are retired. Keep the migrated
+    // DaveTaxNZ article, but do not regenerate a dead trailing source link.
+    .replace(/(?:<br\s*\/?\s*>\s*){2}Read the full article here:\s*[“"]?<a href="https:\/\/(?:www\.)?stacehammond\.co\.nz\/[^"<]*"[^>]*>.*?<\/a>[”"“]?/gi, "")
     .replace(/<p>(?:\s|&nbsp;|\u00a0|<br\s*\/?\s*>)*<\/p>/gi, "")
     .replace(/(?:<br\s*\/?\s*>\s*){3,}/gi, "<br><br>")
     .trim();
