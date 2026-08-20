@@ -368,11 +368,10 @@ export const wordpressArticles = [
     "legacyAliases": [
       "https://davetaxnz.nz/2025/12/04/when-tax-becomes-a-kpi-irds-11-81-return-on-compliance-and-what-it-means-for-ordinary-new-zealanders/"
     ],
-    "sourceUrl": "https://www.stacehammond.co.nz/tax-kpi-ird-compliance-return-new-zealand-impact/",
     "image": "/assets/wordpress/2025/11/f30b96_a52f06055c53437b9f39de1507ca1c76.avif",
     "imageAlt": "When Tax Becomes a KPI: IRD’s $11.81 Return on Compliance and What It Means for Ordinary New Zealanders",
     "imageWidth": 1905,
     "imageHeight": 541,
-    "contentHtml": "<p>The IRD’s latest figures show a $11.81 return on every $1 spent on compliance, and that shift has real consequences for taxpayers. In this article, I look at what this means in practical terms — tighter enforcement, faster use of data-matching, more deduction notices, and a higher likelihood of follow-up where there are outstanding obligations.<br /><br />From my time working inside the system and now in practice, I’ve seen how these trends affect people on the ground — small businesses juggling cashflow, contractors trying to stay on top of filings, and student-loan borrowers overseas who may not realise how quickly IRD can now act.<br /><br />My aim in writing this was to explain the landscape clearly so people understand the environment they’re operating in.<br /><br />Read the full article here: “<a href=\"https://www.stacehammond.co.nz/tax-kpi-ird-compliance-return-new-zealand-impact/\" target=\"_blank\" rel=\"noopener noreferrer\">When Tax Becomes a KPI: IRD’s $11.81 Return on Compliance and What It Means for Ordinary New Zealanders</a>“</p>"
+    "contentHtml": "<p>The IRD’s latest figures show a $11.81 return on every $1 spent on compliance, and that shift has real consequences for taxpayers. In this article, I look at what this means in practical terms — tighter enforcement, faster use of data-matching, more deduction notices, and a higher likelihood of follow-up where there are outstanding obligations.<br /><br />From my time working inside the system and now in practice, I’ve seen how these trends affect people on the ground — small businesses juggling cashflow, contractors trying to stay on top of filings, and student-loan borrowers overseas who may not realise how quickly IRD can now act.<br /><br />My aim in writing this was to explain the landscape clearly so people understand the environment they’re operating in.</p>"
   }
 ];
