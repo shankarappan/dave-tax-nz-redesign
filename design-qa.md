@@ -1,45 +1,60 @@
-# Design QA
+# Article archive design QA
 
-- Source visual truth: restored scrollable implementation from commit `8a619e3`; publication-logo treatment from `/var/folders/n2/d96307fd2c91hg5g4xt_f24m0000gn/T/codex-clipboard-43f2c6e2-4376-47d0-beee-7f9eaff1ecca.png`
-- Implementation screenshot: `/tmp/dave-tax-design-qa-restored/restored-desktop.png`
-- Comparison board: `/tmp/dave-tax-design-qa-restored/design-qa-comparison-restored.png`
-- Desktop viewport: 1536 × 1024 CSS pixels, device scale factor 1
-- Mobile viewport: 390 × 844 CSS pixels, device scale factor 1
-- Source direction pixels: 1536 × 1024
-- Implementation pixels: 1536 × 1024
-- Density normalization: none required
-- State: homepage, desktop navigation closed; mobile navigation tested open and closed
+- Source visual truth: `/var/folders/n2/d96307fd2c91hg5g4xt_f24m0000gn/T/codex-clipboard-520463e3-ab11-454e-87c0-01e69c52f256.png`
+- Implementation screenshot: `design-qa-comparison-article-grid.png` (right-hand panel)
+- Side-by-side comparison: `design-qa-comparison-article-grid.png`
+- State: Articles & Media Archive, default filters, first two article rows
+- CSS viewport: 1323 × 690 at device scale factor 1
+- Source pixels: 2646 × 1380, normalized to 1308 × 682 for comparison
+- Implementation pixels: 1308 × 682
 
 ## Full-view comparison evidence
 
-The rollback restores the earlier production composition: a substantial split hero followed by proof, Expertise, Client Story, Articles & Media, Contact, and footer sections. The page is 3,719 CSS pixels tall in its default desktop state and scrolls normally. The comparison board confirms that the dark editorial hero, portrait, typography, warm paper proof section, vermilion actions, and publication strip retain the selected visual language.
+The reported layout used content-sized grid minimums, producing 307 px / 645 px / 307 px tracks. That made the centre card twice as wide as its neighbours and created visibly inconsistent headline wrapping, whitespace and vertical rules. The revised layout measures 396 px / 396 px / 396 px with consistent 36 px gutters and 390 px row heights. Tablet measures two equal 403.5 px tracks; mobile measures one 345 px track without horizontal overflow.
 
-The compact one-screen presentation is intentionally not reproduced because the user explicitly requested restoration of the previous scrollable page.
+## Focused region comparison evidence
 
-## Focused-region evidence
+The first two archive rows were inspected at desktop and mobile sizes. Publication labels and dates share a baseline, headlines use a consistent optical size, summaries are constrained to four lines, category labels align above the action row, and actions remain evenly positioned. No separate asset comparison was needed because this archive grid contains no imagery or non-standard icons.
 
-The proof-section region was checked separately at desktop and mobile sizes. The supplied publication lockup is rendered as one sharp 402 × 85 image and visibly contains Newstalk ZB, Stuff, NZ Lawyer, and The Post. All five local images loaded with non-zero natural dimensions.
+## Findings and comparison history
 
-## Findings
+### Pass 1 — blocked
 
-- No actionable P0, P1, or P2 issues remain.
-- Fonts and typography: the restored Libre Franklin and Source Serif 4 hierarchy matches the earlier scrollable build, including the large hero display and editorial headings.
-- Spacing and layout rhythm: the long-form section sequence and generous vertical rhythm are restored. Desktop and mobile show no horizontal overflow.
-- Colors and visual tokens: the near-black, warm paper, vermilion, muted gold, and grey rule system is restored without new drift.
-- Image quality and asset fidelity: Dave’s supplied logo and portraits remain local assets. The four publication marks use the supplied raster lockup rather than substituted text.
-- Copy and content: the previous service, client story, article, contact, and footer content is restored.
-- Interaction and responsiveness: article filtering works; selecting “In the media” displays two cards. The mobile menu reports the correct expanded state, becomes visible, closes correctly, and the page remains free of horizontal overflow.
+- [P1] Unequal desktop grid tracks made the archive look structurally broken.
+  - Evidence: the first three cards measured 307.3 px, 645.3 px and 307.3 px.
+  - Fix: changed the archive grid to `repeat(3, minmax(0, 1fr))` and set cards to `min-width: 0`.
+- [P2] Card borders and padding were tied to a three-column `nth-child` pattern, which did not adapt cleanly at tablet and mobile breakpoints.
+  - Fix: scoped archive cards to consistent gutter-based spacing with no internal vertical borders.
+- [P2] Long summaries and headings could control track sizing and disrupt visual rhythm.
+  - Fix: added safe wrapping, a restrained fluid headline size and a four-line summary clamp.
 
-## Comparison history
+### Pass 2 — passed
 
-- Earlier compact pass: the page was compressed into a 958-pixel presentation canvas, removing the expected long-form scrolling experience.
-- Rollback pass: reverted the compact page to commit `8a619e3`, restoring all long-form sections and normal scrolling.
-- Logo pass: replaced the earlier text-only media links with the supplied Newstalk ZB, Stuff, NZ Lawyer, and The Post image lockup. Post-fix desktop and mobile captures show the lockup fully visible.
+- Desktop grid tracks are equal and aligned.
+- Tablet and mobile breakpoints produce equal two-column and single-column layouts.
+- Search returns `1 item` for “Malaysia”; the Student Loans filter returns `10 items`.
+- The first article detail link navigates to the expected article page.
+- A fresh browser verification reported zero console errors after adding the development render fallback.
+
+## Required fidelity surfaces
+
+- Fonts and typography: Existing Source Serif 4 and Libre Franklin families are preserved. Headline size, line height, wrapping and metadata weights are consistent across cards.
+- Spacing and layout rhythm: Equal tracks, consistent gutters, aligned metadata, equal desktop row heights and responsive one/two/three-column transitions pass.
+- Colors and visual tokens: Existing paper, ink, red, muted text and rule tokens remain unchanged and maintain the established editorial direction.
+- Image quality and asset fidelity: Not applicable to the archive card grid; no visible image assets were removed or approximated.
+- Copy and content: Article titles, summaries, dates, publication labels, categories and links are unchanged.
+
+## Implementation checklist
+
+- [x] Equalise desktop grid tracks.
+- [x] Normalise card spacing and metadata alignment.
+- [x] Constrain long copy without changing source text.
+- [x] Verify tablet and mobile layouts.
+- [x] Test search, subject filtering and article navigation.
+- [x] Confirm a clean production build and browser console.
 
 ## Follow-up polish
 
-- P3: connect the existing article collection to the planned automated publishing source when that workflow is selected.
-
-## Final result
+No P0, P1 or P2 issues remain. Optional P3 work could add article thumbnails in a future, separately approved visual redesign.
 
 final result: passed

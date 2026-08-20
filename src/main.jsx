@@ -1,13 +1,17 @@
 import React from "react";
-import { hydrateRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import { App } from "./App.jsx";
 import "./styles.css";
 
-hydrateRoot(document.getElementById("root"),
+const container = document.getElementById("root");
+const app = (
   <React.StrictMode>
     <App initialPath={window.location.pathname} />
-  </React.StrictMode>,
+  </React.StrictMode>
 );
+
+if (container.hasChildNodes()) hydrateRoot(container, app);
+else createRoot(container).render(app);
 
 document.addEventListener("click", (event) => {
   const link = event.target.closest("[data-event]");
