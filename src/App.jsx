@@ -92,7 +92,8 @@ function StoriesPreview() {
 }
 
 function ArticleCard({ article, internal = true }) {
-  return <article className="article-card"><div className="article-meta"><span>{article.publication}</span><time dateTime={article.isoDate}>{article.date}</time></div><h3>{article.title}</h3><p>{article.summary}</p><span className="article-type">{article.subject} · {article.type}</span><div className="article-actions">{internal && <a className="text-link" href={sitePath(`articles-media/${article.slug}/`)}>View details <ArrowRight size={18} /></a>}<a className="text-link text-link--muted" href={article.url} target="_blank" rel="noopener noreferrer">Original source</a></div></article>;
+  const externalUrl = article.sourceUrl ?? (!article.contentHtml ? article.url : undefined);
+  return <article className="article-card"><div className="article-meta"><span>{article.publication}</span><time dateTime={article.isoDate}>{article.date}</time></div><h3>{article.title}</h3><p>{article.summary}</p><span className="article-type">{article.subject} · {article.type}</span><div className="article-actions">{internal && <a className="text-link" href={sitePath(`articles-media/${article.slug}/`)}>View details <ArrowRight size={18} /></a>}{externalUrl && <a className="text-link text-link--muted" href={externalUrl} target="_blank" rel="noopener noreferrer">Original source</a>}</div></article>;
 }
 
 function InsightsPreview() {
@@ -124,7 +125,8 @@ function ArchivePage() {
 }
 
 function ArticlePage({ article }) {
-  return <main id="main"><PageIntro eyebrow={`${article.subject} · ${article.type}`} title={article.title}>{article.publication} · {article.date}</PageIntro><article className="detail-page section-shell section-pad"><dl><div><dt>Publication</dt><dd>{article.publication}</dd></div><div><dt>Relationship</dt><dd>{article.relationship}</dd></div><div><dt>Published</dt><dd>{article.date}</dd></div></dl><p>{article.summary}</p><p>This record identifies the publication and Dave’s relationship to it from the linked source. It does not add or imply any unverified claim.</p><ActionLink href={article.url} external>Read the original at {article.publication}</ActionLink><a className="text-link" href={sitePath("articles-media/")}>Return to the archive <ArrowRight size={18} /></a></article></main>;
+  const showFeaturedImage = article.image && !article.contentHtml?.includes(`src=\"${article.image}\"`);
+  return <main id="main"><PageIntro eyebrow={`${article.subject} · ${article.type}`} title={article.title}>{article.publication} · {article.date}</PageIntro><article className="detail-page section-shell section-pad"><dl><div><dt>Publication</dt><dd>{article.publication}</dd></div><div><dt>Relationship</dt><dd>{article.relationship}</dd></div><div><dt>Published</dt><dd>{article.date}</dd></div></dl>{showFeaturedImage && <img className="article-featured" src={article.image} alt={article.imageAlt} width={article.imageWidth} height={article.imageHeight} />}{article.contentHtml ? <><p className="archive-note">Migrated from the original DaveTaxNZ publication archive. This is general information, not legal, tax or accounting advice.</p><div className="article-body" dangerouslySetInnerHTML={{ __html: article.contentHtml }} /></> : <><p>{article.summary}</p><p>This record identifies the publication and Dave’s relationship to it from the linked source. It does not add or imply any unverified claim.</p></>}{article.sourceUrl && <ActionLink href={article.sourceUrl} external>View the original source</ActionLink>}<a className="text-link" href={sitePath("articles-media/")}>Return to the archive <ArrowRight size={18} /></a></article></main>;
 }
 
 const legalPages = {

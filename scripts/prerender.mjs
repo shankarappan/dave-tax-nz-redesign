@@ -50,12 +50,33 @@ function pageHtml(page) {
     ],
   };
   const content = renderToStaticMarkup(React.createElement(App, { initialPath: pathname }));
-  return template
+  let html = template
     .replaceAll("__PAGE_TITLE__", page.title)
     .replaceAll("__PAGE_DESCRIPTION__", page.description)
     .replaceAll("__PAGE_URL__", url)
     .replaceAll("__PAGE_SCHEMA__", JSON.stringify(schema).replaceAll("<", "\\u003c"))
     .replace('<div id="root"></div>', `<div id="root">${content}</div>`);
+
+  if (matchingArticle) {
+    html = html
+      .replace('<meta property="og:type" content="website" />', '<meta property="og:type" content="article" />');
+    if (matchingArticle.image) {
+      const imageUrl = new URL(matchingArticle.image, siteOrigin).href;
+      html = html
+        .replace('https://davetaxnz.nz/og.png', imageUrl)
+        .replace('Dave Ananth — Student Loan Lawyer NZ and IRD Negotiator', matchingArticle.imageAlt ?? matchingArticle.title)
+        .replace('<meta property="og:image:width" content="1200" />', `<meta property="og:image:width" content="${matchingArticle.imageWidth ?? 1200}" />`)
+        .replace('<meta property="og:image:height" content="630" />', `<meta property="og:image:height" content="${matchingArticle.imageHeight ?? 630}" />`)
+        .replace('https://davetaxnz.nz/og.png', imageUrl);
+    } else {
+      html = html
+        .replace(/^\s*<meta property="og:image"[^\n]*\n/gm, "")
+        .replace(/^\s*<meta property="og:image:(?:width|height|alt)"[^\n]*\n/gm, "")
+        .replace(/^\s*<meta name="twitter:image"[^\n]*\n/gm, "");
+    }
+  }
+
+  return html;
 }
 
 for (const page of pages) {
@@ -68,9 +89,14 @@ const redirects = [
   ["book-a-consultation", "/#contact"],
   ["student-loan-negotiations", "/#expertise"],
   ["ird-disputes-tax-penalties-negotiation", "/#expertise"],
-  ...articles
-    .filter((article) => article.publication === "DaveTaxNZ")
-    .map((article) => [new URL(article.url).pathname.replace(/^\//, "").replace(/\/$/, ""), `/articles-media/${article.slug}/`]),
+  ...articles.flatMap((article) => {
+    const legacyUrls = [...new Set([
+      ...(article.publication === "DaveTaxNZ" ? [article.url] : []),
+      ...(article.legacyUrl ? [article.legacyUrl] : []),
+      ...(article.legacyAliases ?? []),
+    ])];
+    return legacyUrls.map((legacyUrl) => [new URL(legacyUrl).pathname.replace(/^\//, "").replace(/\/$/, ""), `/articles-media/${article.slug}/`]);
+  }),
 ];
 
 function redirectHtml(target) {
