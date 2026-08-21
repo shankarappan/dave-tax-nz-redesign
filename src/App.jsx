@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowRight, Check, EnvelopeSimple, FileText, GlobeHemisphereWest, List, Phone, Quotes, ShieldCheck, Student, WhatsappLogo, X } from "@phosphor-icons/react";
 import { articles, mediaTypes, subjects } from "./articles";
+import { testimonials } from "./testimonials";
 
 const phoneDisplay = "+64 21 021 68888";
 const phoneHref = "tel:+642102168888";
@@ -38,37 +39,60 @@ function Header({ menuOpen, setMenuOpen }) {
     <a className="brand" href={home} aria-label="Dave Ananth home" onClick={close}><img src={asset("dave-ananth-logo.webp")} alt="Dave Ananth, Tax Barrister" width="150" height="130" /></a>
     <button ref={menuButton} className="menu-button" type="button" aria-expanded={menuOpen} aria-controls="site-nav" onClick={() => setMenuOpen(!menuOpen)}><span className="sr-only">{menuOpen ? "Close menu" : "Open menu"}</span>{menuOpen ? <X size={26} /> : <List size={28} />}</button>
     <nav ref={nav} id="site-nav" className={menuOpen ? "nav nav--open" : "nav"} aria-label="Primary navigation">
-      <a href={`${home}#about`} onClick={close}>About Dave</a><a href={`${home}#expertise`} onClick={close}>Expertise</a><a href={sitePath("testimonials/")} onClick={close}>Client stories</a><a href={sitePath("articles-media/")} onClick={close}>Articles &amp; media</a><a href={`${home}#contact`} onClick={close}>Contact</a>
+      <a href={`${home}#about`} onClick={close}>About Dave</a><a href={`${home}#student-loans`} onClick={close}>Student Loans</a><a href={`${home}#tax-debt`} onClick={close}>IRD Tax Debt</a><a href={sitePath("testimonials/")} onClick={close}>Testimonials</a><a href={sitePath("articles-media/")} onClick={close}>Articles &amp; media</a><a href={`${home}#contact`} onClick={close}>Contact</a>
     </nav>
-    <ActionLink href={`${home}#contact`} event="consultation_click">Discuss your student loan</ActionLink>
+    <ActionLink href={`${home}#contact`} event="consultation_click">Discuss your matter</ActionLink>
   </header>;
 }
 
 function Hero() {
   return <section className="hero" aria-labelledby="hero-title">
-    <div className="hero__copy"><p className="eyebrow">Dave Ananth · Partner at Meridian Partners · Former Inland Revenue Prosecutor</p><h1 id="hero-title">Student Loan Lawyer NZ and IRD Negotiator</h1><div className="accent-rule" aria-hidden="true" /><p className="hero__lead">Practical legal advice for overseas New Zealanders dealing with long-standing student-loan debt, penalties, repayment demands and possible IRD enforcement.</p>
-      <a className="alert-link" href="#expertise"><ShieldCheck size={35} weight="light" /><span>Living overseas with New Zealand student-loan debt? Review the practical options.</span><ArrowRight size={20} /></a>
-      <div className="button-row"><ActionLink href="#contact" event="consultation_click">Discuss your student loan with Dave</ActionLink><ActionLink href={phoneHref} secondary event="call_click"><Phone size={21} weight="fill" /> Call Dave</ActionLink></div>
+    <div className="hero__copy"><p className="eyebrow">Dave Ananth · Partner at Meridian Partners · Former Inland Revenue Prosecutor</p><h1 id="hero-title">Student Loan Lawyer NZ and IRD Negotiator</h1><div className="accent-rule" aria-hidden="true" /><p className="hero__lead">Practical legal advice for overseas New Zealanders dealing with long-standing student-loan debt, and for individuals and businesses facing IRD tax debt, disputes or enforcement.</p>
+      <a className="alert-link" href="#student-loans"><ShieldCheck size={35} weight="light" /><span>Living overseas with New Zealand student-loan debt? Review the practical options.</span><ArrowRight size={20} /></a>
+      <div className="button-row"><ActionLink href="#contact" event="consultation_click">Discuss your matter with Dave</ActionLink><ActionLink href={phoneHref} secondary event="call_click"><Phone size={21} weight="fill" /> Call Dave</ActionLink></div>
     </div>
     <div className="hero__portrait"><img src={asset("dave-ananth-hero.webp")} alt="Dave Ananth, student-loan lawyer and IRD negotiator" width="1280" height="1198" /><div className="portrait-caption"><strong>Dave Ananth</strong><span>Partner, Meridian Partners</span><small>Former Inland Revenue Prosecutor</small></div></div>
   </section>;
 }
 
 function Proof() {
-  return <section className="proof section-shell" aria-label="Professional profile and media"><div className="quote-mark"><Quotes size={45} weight="fill" aria-hidden="true" /></div><p className="proof__statement">Principal specialist practice in overseas New Zealand student-loan matters, supported by selected IRD tax-debt work.</p>
+  return <section className="proof section-shell" aria-label="Professional profile and media"><div className="quote-mark"><Quotes size={45} weight="fill" aria-hidden="true" /></div><p className="proof__statement">Specialist advice for overseas New Zealand student-loan matters and IRD tax-debt negotiations.</p>
     <div className="proof__identity"><img src={asset("dave-ananth-profile.webp")} alt="Dave Ananth" width="1280" height="1280" /><p><strong>Dave Ananth</strong><span>Partner, Meridian Partners</span></p></div>
     <div className="proof__media"><img src={asset("media-lockup.png")} alt="As seen in Newstalk ZB, Stuff, NZ Lawyer and The Post" width="402" height="85" /></div>
   </section>;
 }
 
-const principalAreas = ["Overseas-based student-loan borrowers", "Long-standing student-loan arrears", "Penalties and interest", "Repayment and settlement proposals", "Remission applications", "Hardship and medical circumstances", "IRD communication and negotiation", "Enforcement and border-risk assessment"];
-const publicRoles = ["Partner, Meridian Partners", "Former Inland Revenue solicitor and prosecutor", "Former Malaysian Magistrate and Judicial Officer", "Former Director, EY Malaysia", "Honorary Consul of Timor-Leste", "President, New Zealand Malaysian Business Association", "Honorary Advisor, ASEAN Region, Auckland Business Chamber"];
+const principalAreas = [
+  "Overseas-based student-loan borrowers and long-standing arrears",
+  "Student-loan repayment, remission and hardship applications",
+  "Student-loan border arrests and urgent pre-travel advice",
+  "IRD tax-debt negotiations for individuals and businesses",
+  "Income tax, GST and PAYE arrears, penalties and interest",
+  "Negotiated tax debt repayment, settlement and financial-relief proposals",
+  "Statutory demands, deduction notices, liquidation and bankruptcy risk",
+  "New Zealand tax debt pursued against people living overseas",
+  "Bright-line property tax advice, exclusions and IRD disputes",
+  "Tax policy",
+];
+const publicRoles = [
+  { text: "Partner, Meridian Partners", href: "https://mplaw.nz/about-meridian-partners/dave-ananth/" },
+  { text: "Former Inland Revenue prosecutor" },
+  { text: "Honorary Consul of Timor-Leste for the North Island, New Zealand", href: "https://www.consulatetimorleste.co.nz/" },
+  { text: "Honorary Advisor for the ASEAN Region, Auckland Business Chamber", href: "https://aucklandchamber.co.nz/internation-advisors/" },
+  { text: "Founder and President, New Zealand Malaysian Business Association", href: "https://nzmba.org.nz/" },
+  { text: "Layperson Member, Health Practitioners Disciplinary Tribunal" },
+  { text: "Expert Panel Member – Ethnic Advisory Panel, Indian Newslink" },
+  { text: "Trustee - Atmabhav", href: "https://atmabhav.org.nz/" },
+  { text: "Life Member, Judicial Officers Association, Malaysia" },
+  { text: "Former Magistrate and Judicial Officer, Malaysia" },
+  { text: "Former Director, EY Malaysia" },
+];
 
 function AboutDave() {
   return <section id="about" className="about section-shell section-pad"><div className="section-heading"><p className="eyebrow eyebrow--red">About Dave</p><h2>Dave Ananth — Student Loan Lawyer and IRD Negotiator</h2><p>DaveTaxNZ is Dave’s personal professional information, publication and media platform. Formal legal services and engagements are presently provided through Meridian Partners.</p></div>
-    <div className="about__grid"><div className="about__copy"><p>Dave Ananth is an Auckland-based lawyer whose principal specialist practice is helping overseas New Zealanders address long-standing student-loan debt with Inland Revenue.</p><p>Many clients left New Zealand years or decades ago. During that period, their student-loan balances increased through overseas interest, missed obligations and late-payment penalties. Some are frightened to contact Inland Revenue, worried about travelling to New Zealand, or uncertain whether any practical resolution remains available.</p><p>Dave reviews the history of each matter, identifies realistic options and, where formally engaged, communicates and negotiates with Inland Revenue on the borrower’s behalf.</p><p>Dave is a former Inland Revenue solicitor and prosecutor and has more than 35 years of legal experience in New Zealand and Malaysia. He is presently a Partner at Meridian Partners in Auckland.</p><a className="text-link" href="#expertise">Learn how Dave assesses overseas student-loan matters <ArrowRight size={18} /></a></div>
-      <div className="about__list"><h3>Dave’s principal areas of work</h3><ul>{principalAreas.map((item) => <li key={item}>{item}</li>)}</ul></div>
-      <div className="about__list about__list--roles"><h3>Professional and public roles</h3><ul>{publicRoles.map((item) => <li key={item}>{item}</li>)}</ul></div>
+    <div className="about__grid"><div className="about__copy"><p>Dave Ananth is an Auckland-based lawyer whose work includes overseas New Zealand student-loan matters and IRD tax-debt negotiations for individuals and businesses.</p><p>Many clients left New Zealand years or decades ago. During that period, their student-loan balances increased through overseas interest, missed obligations and late-payment penalties. Some are frightened to contact Inland Revenue, worried about travelling to New Zealand, or uncertain whether any practical resolution remains available.</p><p>Dave reviews the history of each matter, identifies realistic options and, where formally engaged, communicates and negotiates with Inland Revenue on the client’s behalf.</p><p>Dave is a former Inland Revenue prosecutor and has more than 35 years of legal experience in New Zealand and Malaysia. He is presently a Partner at Meridian Partners in Auckland.</p><a className="text-link" href="#student-loans">Explore Dave’s areas of work <ArrowRight size={18} /></a></div>
+      <div className="about__list"><h3>Dave’s areas of expertise</h3><ul>{principalAreas.map((item) => <li key={item}>{item}</li>)}</ul></div>
+      <div className="about__list about__list--roles"><h3>Professional and public roles</h3><ul>{publicRoles.map(({ text, href }) => <li key={text}>{href ? <a href={href} target="_blank" rel="noopener noreferrer">{text}</a> : text}</li>)}</ul></div>
     </div>
   </section>;
 }
@@ -79,16 +103,31 @@ const expertise = [
   { icon: GlobeHemisphereWest, title: "Assess return and enforcement risks", text: "Assessing possible enforcement or border risks and advising overseas borrowers who want to return to New Zealand. No outcome or timeframe can be guaranteed." },
 ];
 
-function Expertise() {
-  return <section id="expertise" className="expertise section-shell section-pad"><div className="section-heading"><p className="eyebrow eyebrow--red">Principal specialist practice</p><h2>How Dave helps overseas student-loan borrowers</h2><p>Dave advises on engaging with Inland Revenue, seeking penalty relief where appropriate, presenting repayment or settlement proposals, and assessing possible enforcement or border risks.</p></div>
+function StudentLoans() {
+  return <section id="student-loans" className="expertise section-shell section-pad"><div className="section-heading"><p className="eyebrow eyebrow--red">Student Loan Debt &amp; Penalties</p><h2>How Dave helps overseas student-loan borrowers</h2><p>Dave advises on engaging with Inland Revenue, seeking penalty relief where appropriate, presenting repayment or settlement proposals, and assessing possible enforcement or border risks.</p></div>
     <div className="expertise-grid">{expertise.map(({ icon: Icon, title, text }, index) => <div className="expertise-item" key={title}><span className="expertise-item__number">0{index + 1}</span><Icon size={34} weight="light" /><h3>{title}</h3><p>{text}</p></div>)}</div>
-    <aside className="tax-debt-note"><div><p className="eyebrow eyebrow--red">Selected matters</p><h3>Selected IRD tax-debt matters</h3></div><p>Dave also acts in selected IRD tax-debt matters involving income tax, GST, PAYE, penalties, repayment proposals and enforcement. He works with the client’s accountant where returns, financial reconstruction or supporting schedules are required. He does not prepare tax returns or conduct tax litigation. <a href="#contact">Contact Dave to discuss whether the matter is within scope</a>.</p></aside>
+  </section>;
+}
+
+const taxDebtAreas = [
+  { icon: FileText, title: "Assess the tax-debt position", text: "Reviewing income tax, GST and PAYE arrears, penalties and interest, including New Zealand tax debt pursued against people living overseas." },
+  { icon: GlobeHemisphereWest, title: "Negotiate with Inland Revenue", text: "Where formally engaged, Dave may present repayment, settlement or financial-relief proposals. Inland Revenue determines whether any proposal is accepted." },
+  { icon: ShieldCheck, title: "Respond to disputes and enforcement", text: "Advice on statutory demands, deduction notices, liquidation and bankruptcy risk, and bright-line property tax disputes. No outcome or timeframe can be guaranteed." },
+];
+
+function TaxDebt() {
+  return <section id="tax-debt" className="expertise tax-debt section-shell section-pad"><div className="section-heading"><p className="eyebrow eyebrow--red">Tax Disputes &amp; IRD Negotiation</p><h2>IRD tax-debt advice and negotiation</h2><p>Dave advises individuals and businesses on tax debt, financial-relief proposals, Inland Revenue disputes and enforcement. He works with the client’s accountant where returns, financial reconstruction or supporting schedules are required.</p></div>
+    <div className="expertise-grid">{taxDebtAreas.map(({ icon: Icon, title, text }, index) => <div className="expertise-item" key={title}><span className="expertise-item__number">0{index + 1}</span><Icon size={34} weight="light" /><h3>{title}</h3><p>{text}</p></div>)}</div>
   </section>;
 }
 
 function StoriesPreview() {
-  const previews = [["Within just two days, the entire process was turned around.", "Jana R", "June 2025"], ["Managed with reassurance, professionalism, trust and kindness.", "Sarah Williams", "October 2025"], ["His generosity, empathy and kindness.", "Felicity McKeen", "April 2025"]];
-  return <section id="stories" className="stories"><div className="section-shell"><div className="stories__heading"><p className="eyebrow eyebrow--gold">Testimonials</p><h2>Student Loan Client Experiences</h2></div><div className="testimonial-grid">{previews.map(([quote, name, date]) => <figure key={name}><blockquote>“{quote}”</blockquote><figcaption><strong>{name}</strong><span>Student loan client · {date}</span></figcaption></figure>)}</div><p className="outcomes-note outcomes-note--light">These are exact excerpts from individual client accounts. Past outcomes do not guarantee future results.</p><div className="story-links"><a className="text-link text-link--light" href={sitePath("testimonials/")}>Read testimonial information <ArrowRight size={18} /></a><a className="text-link text-link--light" href={sitePath("#contact")} data-event="consultation_click">Request an initial call <ArrowRight size={18} /></a></div></div></section>;
+  const previews = [
+    ["Dave literally changed our financial trajectory. He is deeply knowledgeable about the IRD and how student loans work, especially for people living overseas. He negotiated a settlement that chopped my debt by two thirds and arranged a very reasonable lump sum payment… Thanks to him, I’ll be completely debt free.", "Martyn Svendsen", "August 2026"],
+    ["The process of sorting out my student loan debt, which was daunting and overwhelming for me, was managed with reassurance, professionalism, trust and kindness…. Handing over the reins to Dave unburdened me from anxiety and shame. He is a master negotiator with the IRD—reducing my debt total by 30 percent. With Dave’s help I am now debt-free, feel lighter and happier than I have in years, and engaging with his team has been nothing less than life-changing.", "Sarah Williams", "October 2025"],
+    ["I contacted Dave Ananth and immediately, my life changed. Dave works fast. In less than five business days almost 20 years of anxiety, stress and shame was gone. His expertise and professionalism saw him deftly navigate the IRD system and win a viable resolution seeing my loan consolidated and completed. Gone FOREVER.", "Felicity McKeen", "August 2025"],
+  ];
+  return <section id="stories" className="stories"><div className="section-shell"><div className="stories__heading"><p className="eyebrow eyebrow--gold">Testimonials</p><h2>Student Loan Client Experiences</h2></div><div className="testimonial-grid">{previews.map(([quote, name, date]) => <figure key={name}><blockquote>“{quote}”</blockquote><figcaption><strong>{name}</strong><span>Student loan client · {date}</span></figcaption></figure>)}</div><p className="outcomes-note outcomes-note--light">These are exact excerpts from individual client accounts. Past outcomes do not guarantee future results.</p><div className="story-links"><a className="text-link text-link--light" href={sitePath("testimonials/")}>Read more testimonials <ArrowRight size={18} /></a><a className="text-link text-link--light" href={sitePath("#contact")} data-event="consultation_click">Request an initial call <ArrowRight size={18} /></a></div></div></section>;
 }
 
 function ArticleCard({ article, internal = true }) {
@@ -144,7 +183,18 @@ function PrivacyPage() {
 }
 
 function TestimonialsPage() {
-  return <main id="main"><PageIntro eyebrow="Client experiences" title="Testimonials">Only exact, source-approved testimonial wording is published.</PageIntro><div className="legal-page testimonials-page section-shell section-pad"><blockquote>“Within just two days, the entire process was turned around.”</blockquote><p><strong>Jana R</strong><br />Student loan client · June 2025</p><blockquote>“Managed with reassurance, professionalism, trust and kindness.”</blockquote><p><strong>Sarah Williams</strong><br />Student loan client · October 2025</p><blockquote>“His generosity, empathy and kindness.”</blockquote><p><strong>Felicity McKeen</strong><br />Student loan client · April 2025</p><p className="outcomes-note">Testimonials describe individual experiences. Past outcomes do not guarantee future results.</p></div></main>;
+  const [expanded, setExpanded] = useState(() => new Set());
+  const toggle = (index) => setExpanded((current) => {
+    const next = new Set(current);
+    if (next.has(index)) next.delete(index); else next.add(index);
+    return next;
+  });
+  return <main id="main"><PageIntro eyebrow="Client experiences" title="Testimonials">These testimonials describe individual client experiences. Every student-loan matter is different, and previous outcomes do not guarantee that the same result will be available in another case.</PageIntro><div className="testimonials-page section-shell section-pad"><p className="testimonial-context">Some reviews were originally published while Dave was at Stace Hammond. Dave is now a Partner at Meridian Partners.</p><div className="testimonial-archive">{testimonials.map(({ name, date, quote }, index) => {
+    const isLong = quote.length > 360;
+    const isExpanded = expanded.has(index);
+    const copyId = `testimonial-${index}`;
+    return <article className="testimonial-card" key={`${name}-${date}-${index}`}><blockquote id={copyId} className={isLong && !isExpanded ? "review-copy review-copy--collapsed" : "review-copy"}>“{quote}”</blockquote><div className="testimonial-card__footer"><p><strong>{name}</strong>{date && <span>{date}</span>}</p>{isLong && <button className="review-toggle" type="button" aria-expanded={isExpanded} aria-controls={copyId} onClick={() => toggle(index)}>{isExpanded ? "Less" : "More"}</button>}</div></article>;
+  })}</div><div className="testimonial-safeguards"><p>Only exact, source-approved testimonial wording is published.</p><p>Testimonials describe individual experiences. Past outcomes do not guarantee future results. No outcome or timeframe can be guaranteed.</p></div></div></main>;
 }
 
 function NotFound() {
@@ -152,7 +202,7 @@ function NotFound() {
 }
 
 function HomePage() {
-  return <><Proof /><AboutDave /><Expertise /><StoriesPreview /><InsightsPreview /><Contact /></>;
+  return <><Proof /><AboutDave /><StudentLoans /><TaxDebt /><StoriesPreview /><InsightsPreview /><Contact /></>;
 }
 
 function normalisePath(path) {

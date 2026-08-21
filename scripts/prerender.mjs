@@ -22,7 +22,7 @@ const template = readFileSync(path.join(clientDir, "index.html"), "utf8");
 const siteOrigin = "https://davetaxnz.nz";
 
 const pages = [
-  { path: "", title: "Student Loan Lawyer NZ | IRD Negotiator | Dave Ananth", description: "Overseas with New Zealand student-loan debt? Dave Ananth advises on IRD negotiations, penalties, repayment proposals and enforcement risks." },
+  { path: "", title: "Student Loan Lawyer NZ | IRD Negotiator | Dave Ananth", description: "Dave Ananth advises on overseas New Zealand student-loan matters and IRD tax-debt negotiations for individuals and businesses." },
   { path: "articles-media", title: "Articles & Media Archive | Dave Ananth", description: "Search Dave Ananth’s articles, interviews and media coverage by subject and publication type." },
   { path: "testimonials", title: "Client Testimonials | Dave Ananth", description: "Source-approved client experiences concerning Dave Ananth’s student-loan work." },
   { path: "terms", title: "Terms of Use | DaveTaxNZ", description: "Terms governing use of the DaveTaxNZ professional information, publication and media platform." },
@@ -87,8 +87,8 @@ for (const page of pages) {
 
 const redirects = [
   ["book-a-consultation", "/#contact"],
-  ["student-loan-negotiations", "/#expertise"],
-  ["ird-disputes-tax-penalties-negotiation", "/#expertise"],
+  ["student-loan-negotiations", "/#student-loans"],
+  ["ird-disputes-tax-penalties-negotiation", "/#tax-debt"],
   ...articles.flatMap((article) => {
     const legacyUrls = [...new Set([
       ...(article.publication === "DaveTaxNZ" ? [article.url] : []),
