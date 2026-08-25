@@ -25,6 +25,8 @@ const pages = [
   { path: "", title: "Student Loan Lawyer NZ | IRD Negotiator | Dave Ananth", description: "Dave Ananth advises on overseas New Zealand student-loan matters and IRD tax-debt negotiations for individuals and businesses." },
   { path: "articles-media", title: "Articles & Media Archive | Dave Ananth", description: "Search Dave Ananth’s articles, interviews and media coverage by subject and publication type." },
   { path: "testimonials", title: "Client Testimonials | Dave Ananth", description: "Source-approved client experiences concerning Dave Ananth’s student-loan work." },
+  { path: "student-loan-negotiations", title: "Student Loan Negotiations & IRD Help | Dave Ananth", description: "Practical information for overseas New Zealand student-loan borrowers considering engagement, repayment, remission and return-to-New-Zealand risks." },
+  { path: "ird-disputes-tax-penalties-negotiation", title: "Tax Debt, IRD Disputes & Negotiations | Dave Ananth", description: "Practical information about selected Inland Revenue tax-debt, negotiation and enforcement matters for individuals and businesses." },
   { path: "terms", title: "Terms of Use | DaveTaxNZ", description: "Terms governing use of the DaveTaxNZ professional information, publication and media platform." },
   { path: "privacy", title: "Privacy Statement | DaveTaxNZ", description: "How DaveTaxNZ handles information provided through this website and its contact channels." },
   { path: "legal-disclaimer", title: "Legal & Engagement Disclaimer | DaveTaxNZ", description: "Important information about general website content, contact, confidentiality and formal legal engagement." },
@@ -87,8 +89,6 @@ for (const page of pages) {
 
 const redirects = [
   ["book-a-consultation", "/#contact"],
-  ["student-loan-negotiations", "/#student-loans"],
-  ["ird-disputes-tax-penalties-negotiation", "/#tax-debt"],
   ...articles.flatMap((article) => {
     const legacyUrls = [...new Set([
       ...(article.publication === "DaveTaxNZ" ? [article.url] : []),

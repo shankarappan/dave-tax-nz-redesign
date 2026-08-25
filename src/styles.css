@@ -19,6 +19,7 @@
 .about__grid{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:56px;align-items:start}
 .about__copy{font-size:1rem;line-height:1.7;color:var(--muted)}
 .about__copy p{margin:0 0 18px}
+.about__copy p a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
 .about__list{border-left:1px solid var(--rule);padding-left:32px}
 .about__list h3,.tax-debt-note h3{font-family:var(--serif);font-size:1.65rem;line-height:1.12;margin:0 0 20px}
 .about__list ul{list-style:none;margin:0;padding:0}
@@ -29,6 +30,9 @@
 .tax-debt-note .eyebrow{margin-bottom:12px}
 .tax-debt-note p:last-child{margin:0;color:var(--muted);line-height:1.7}
 .tax-debt-note a{color:var(--red);font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.practice-more{display:flex;align-items:center;justify-content:space-between;gap:30px;margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}
+.practice-more p{margin:0;color:var(--muted);font-size:.84rem;line-height:1.5}
+.practice-more .text-link{flex:none}
 .outcomes-note{font-size:.78rem;color:var(--muted);margin:18px 0 0}
 .story-copy blockquote{font-size:1.35rem;color:white;margin:28px 0 0;padding-left:22px;border-left:3px solid var(--gold)}
 .story-links,.article-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
@@ -148,6 +152,30 @@
 .testimonial-safeguards{display:grid;gap:8px;margin-top:36px;padding-top:24px;border-top:2px solid var(--ink)}
 .testimonial-safeguards p{margin:0;color:var(--muted);font-size:.82rem;line-height:1.6}
 
+/* Substantive practice pages transferred from the original site */
+.practice-page{max-width:1120px}
+.practice-page__notice{margin:0 0 54px;padding:20px 24px;border-left:4px solid var(--gold);background:#eee9e0;color:var(--ink);line-height:1.65}
+.practice-page__sections{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 58px;border-top:1px solid var(--rule)}
+.practice-page__sections section{padding:38px 0;border-bottom:1px solid var(--rule)}
+.practice-page__sections h2,.practice-page__faq h2,.practice-page__action h2{font-family:var(--serif);font-size:clamp(1.75rem,2.5vw,2.35rem);line-height:1.1;margin:0 0 18px}
+.practice-page__sections p{margin:0;color:var(--muted);line-height:1.75}
+.practice-page__sections ul{display:grid;gap:10px;margin:20px 0 0;padding-left:22px;color:var(--muted)}
+.practice-page__sections li{padding-left:5px;line-height:1.55}
+.practice-page__sections li::marker{color:var(--red)}
+.practice-page__faq{margin-top:70px}
+.practice-page__faq>h2{font-size:clamp(2.2rem,4vw,3.6rem);margin-bottom:30px}
+.practice-page__faq>div{border-top:1px solid var(--rule)}
+.practice-page__faq details{border-bottom:1px solid var(--rule)}
+.practice-page__faq summary{position:relative;padding:22px 48px 22px 0;font-family:var(--serif);font-size:1.25rem;font-weight:700;line-height:1.3;cursor:pointer;list-style:none}
+.practice-page__faq summary::-webkit-details-marker{display:none}
+.practice-page__faq summary::after{content:"+";position:absolute;right:4px;top:18px;color:var(--red);font-family:var(--sans);font-size:1.5rem;font-weight:400}
+.practice-page__faq details[open] summary::after{content:"−"}
+.practice-page__faq details p{max-width:850px;margin:0;padding:0 48px 24px 0;color:var(--muted);line-height:1.7}
+.practice-page__action{display:flex;align-items:center;justify-content:space-between;gap:50px;margin-top:76px;padding:42px;background:var(--ink);color:white}
+.practice-page__action h2{margin:8px 0 10px;color:white}
+.practice-page__action p{max-width:580px;margin:0;color:#c4c4c4;line-height:1.6}
+.practice-page__action .button-row{flex:none}
+
 @media(max-width:1140px){
   .site-header{grid-template-columns:140px 1fr auto}
   .site-header>.button{display:none}
@@ -163,4 +191,13 @@
   .testimonial-card{padding:30px 0}
   .testimonial-card blockquote{font-size:1.05rem;padding-left:18px}
   .testimonial-context{margin-bottom:28px}
+  .practice-more{align-items:flex-start;flex-direction:column;gap:14px}
+  .practice-page__notice{margin-bottom:40px;padding:18px}
+  .practice-page__sections{grid-template-columns:1fr}
+  .practice-page__sections section{padding:30px 0}
+  .practice-page__faq{margin-top:54px}
+  .practice-page__faq summary{font-size:1.1rem;padding-right:38px}
+  .practice-page__faq details p{padding-right:0}
+  .practice-page__action{align-items:stretch;flex-direction:column;margin-top:58px;padding:28px 22px}
+  .practice-page__action .button-row{width:100%}
 }

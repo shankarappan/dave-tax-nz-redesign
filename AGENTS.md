@@ -21,4 +21,12 @@ When implementing from a selected generated mock, treat that image as the source
 - DaveTaxNZ remains Dave’s personal professional information and media brand. Dave is presently a Partner at Meridian Partners, through which formal legal engagements are provided.
 - Preserve existing davetaxnz.nz URLs and exact genuine testimonial wording. Do not invent client outcomes, media relationships, publication metadata, or professional titles.
 
+## Client amendments — 25 August 2026
+
+- Use “Tax Barrister” in the homepage hero profile line and portrait caption instead of “Former Inland Revenue Prosecutor”. The former prosecutor/adjudicator history may remain in substantive biography copy.
+- In the student-loan return-risk and IRD enforcement cards, use: “Final determinations, processing timeframes, and decisions are at the discretion of Inland Revenue.”
+- Keep `/student-loan-negotiations/` and `/ird-disputes-tax-penalties-negotiation/` as substantive practice-information pages, linked from the matching homepage sections; do not reduce these URLs to anchor redirects.
+- Michael Bolton and Stewart C testimonials dated August 2026 are approved for the testimonial archive. Preserve their supplied wording exactly.
+- The expanded biography includes Dave’s former adjudicator, Magistrate and Judicial Officer experience, Honorary Consul role, and RSE/trade work. Keep outcome, border, remission and enforcement wording conditional; do not publish “shield”, “secure outcomes”, or “border certainty” promises.
+
 Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts/prepare-sites-build.mjs`, and `tests/sites-worker.test.mjs` intact so the same local prototype can be handed to Sites. Before a Sites handoff, run `npm run build` and `npm run test:sites`; the build must leave `dist/client/index.html`, `dist/server/index.js`, and `dist/.openai/hosting.json`.

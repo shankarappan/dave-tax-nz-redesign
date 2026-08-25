@@ -8,6 +8,11 @@ test("initial HTML contains substantive production content", async () => {
   assert.match(html, /Student Loan Debt &amp; Penalties/);
   assert.match(html, /Tax Disputes &amp; IRD Negotiation/);
   assert.match(html, /IRD tax-debt advice and negotiation/);
+  assert.match(html, /Read more about student-loan negotiations/);
+  assert.match(html, /Read more about IRD tax-debt negotiation/);
+  assert.match(html, /Final determinations, processing timeframes, and decisions are at the discretion of Inland Revenue/);
+  assert.match(html, /Recognised Seasonal Employer \(RSE\)/);
+  assert.doesNotMatch(html, /secure sustainable outcomes and border certainty/);
   assert.match(html, /Read more testimonials/);
   assert.doesNotMatch(html, /Principal specialist practice/);
   assert.match(html, /tel:\+642102168888/);
@@ -30,7 +35,11 @@ test("archive and privacy are separately prerendered", async () => {
 
 test("complete testimonial archive is prerendered with inline disclosure controls", async () => {
   const html = await readFile(new URL("../dist/client/testimonials/index.html", import.meta.url), "utf8");
-  assert.equal((html.match(/class="testimonial-card"/g) ?? []).length, 39);
+  assert.equal((html.match(/class="testimonial-card"/g) ?? []).length, 41);
+  assert.match(html, /Michael Bolton/);
+  assert.match(html, /Stewart C/);
+  assert.match(html, /Professional, honest, dependable, approachable, transparent, efficient and incredibly knowledgeable/);
+  assert.match(html, /student loan version of the doctor being winched down at a confused scene/);
   assert.match(html, /Chelsea Bernal/);
   assert.match(html, /Fenella Hodgkinson/);
   assert.match(html, /aria-controls="testimonial-0"/);
@@ -80,7 +89,11 @@ test("production discovery files and legacy redirects are emitted", async () => 
   assert.match(robots, /https:\/\/davetaxnz\.nz\/sitemap\.xml/);
   assert.match(sitemap, /https:\/\/davetaxnz\.nz\/articles-media\//);
   assert.match(booking, /https:\/\/davetaxnz\.nz\/#contact/);
-  assert.match(studentLoans, /https:\/\/davetaxnz\.nz\/#student-loans/);
-  assert.match(taxDebt, /https:\/\/davetaxnz\.nz\/#tax-debt/);
+  assert.match(studentLoans, /The issues overseas borrowers may face/);
+  assert.match(studentLoans, /How Dave may assist/);
+  assert.doesNotMatch(studentLoans, /http-equiv="refresh"/);
+  assert.match(taxDebt, /When Inland Revenue pressure escalates/);
+  assert.match(taxDebt, /Working with your accountant or tax agent/);
+  assert.doesNotMatch(taxDebt, /http-equiv="refresh"/);
   assert.match(legacyArticle, /\/articles-media\/overseas-student-loan-default-deal\//);
 });

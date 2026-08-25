@@ -2,6 +2,16 @@
 // Do not rewrite or combine testimonials.
 export const testimonials = [
   {
+    "name": "Michael Bolton",
+    "date": "August 2026",
+    "quote": "Professional, honest, dependable, approachable, transparent, efficient and incredibly knowledgeable are just some of the words I would use to describe Dave and his team.\n\nThey handled our historical NZ student loan issue with professionalism and expertise, and from the outset they took away an enormous amount of stress and uncertainty. They also helped us avoid a significant financial cost, which we are incredibly grateful for.\n\nWe genuinely can’t thank Dave and his team enough. Their knowledge, communication and personal approach made what had been a very stressful situation feel completely manageable. I wouldn’t hesitate to recommend them to anyone needing expert advice and support."
+  },
+  {
+    "name": "Stewart C",
+    "date": "August 2026",
+    "quote": "Following a sudden escalation in my matter, I contacted Dave via the firm’s website Book a Consultation page. A pointless series of ever more circular soul-crushing exchanges over three years with IRD unassisted became threats of dire action in days. I requested a consult unsure of what would happen and as a precis: Dave contacted me within hours and after our first conversation I felt immediate relief. Form completed and Dave appointed as my representative next morning. No further contact from IRD and two weeks later I am going with the only possible option certain it is so because a genuinely engaged expert has taken the time to review my personal situation and apply their extraordinary experience. As to cost. Dave explained up front a very, very reasonable fixed cost agreement. I would happily have paid many times the asking but in my situation the work was pro-bono. He was confident and calming and his experience and knowledge of the machinery were immediately obvious. He applied himself with empathy, patience and good humour and I felt advocated for by an expert. Dave is the student loan version of the doctor being winched down at a confused scene. I wish there were more like him."
+  },
+  {
     "name": "Chelsea Bernal",
     "date": "August 2026",
     "quote": "Hire Dave from the very beginning. I’m living overseas and I found Dave when I was a year into back and forth with the IRD, having found myself in the middle of a disputes process when all I wanted was for the penalties and interest on penalties to be removed or reduced from my incredibly large loan debt. Dave calmly swept in, explained everything and continuously kept me in the loop while he negotiated an outcome that meant I could actually pay the loan off entirely! He gives an excellent free 15-minute consultation to understand your situation – absolutely worth your time! Thanks, Dave!"
