@@ -1,4 +1,5 @@
 import { wordpressArticles } from "./wordpressArticles.js";
+import { homeVoiceArticles } from "./homeVoiceArticles.js";
 
 // External records that were never standalone DaveTaxNZ WordPress posts.
 // Keep publisher titles, dates and source URLs exact.
@@ -8,7 +9,7 @@ const externalArticles = [
   { slug: "interest-overseas-student-loans", subject: "Student Loans", type: "Media Coverage", publication: "Interest.co.nz", relationship: "Quotes Dave Ananth", date: "2026", isoDate: "2026", title: "Overseas student loan debt is keeping skilled Kiwis from returning home", summary: "Interest.co.nz reports on growing overseas student-loan balances and their effect on New Zealanders abroad.", detailDescription: "Interest.co.nz reports on the effect of growing overseas student-loan balances on skilled New Zealanders living abroad, including concerns about repayment obligations and returning home. The original article contains the full report and Dave Ananth’s comments.", url: "https://www.interest.co.nz/business/138466/dave-ananth-says-overseas-student-loan-problem-not-just-about-losing-money-its-also" },
 ];
 
-export const articles = [...wordpressArticles, ...externalArticles].sort((a, b) => b.isoDate.localeCompare(a.isoDate));
+export const articles = [...wordpressArticles, ...externalArticles, ...homeVoiceArticles].sort((a, b) => b.isoDate.localeCompare(a.isoDate));
 
 export const subjects = ["Student Loans", "IRD Tax Debt", "Tax Policy", "Crypto Tax", "Other Commentary"];
 export const mediaTypes = ["Articles by Dave", "Media Interviews", "Media Coverage", "Community Columns", "Podcasts"];

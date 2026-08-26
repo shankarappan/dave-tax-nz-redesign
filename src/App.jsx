@@ -11,8 +11,8 @@ const base = import.meta.env.BASE_URL;
 const asset = (name) => `${base}assets/${name}`;
 const sitePath = (path = "") => `${base}${path.replace(/^\//, "")}`;
 
-function ActionLink({ href, children, secondary = false, external = false, event }) {
-  return <a className={secondary ? "button button--secondary" : "button"} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined} data-event={event}>{children}</a>;
+function ActionLink({ href, children, secondary = false, external = false, event, download = false }) {
+  return <a className={secondary ? "button button--secondary" : "button"} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined} data-event={event} download={download || undefined}>{children}</a>;
 }
 
 function Header({ menuOpen, setMenuOpen }) {
@@ -105,7 +105,7 @@ const expertise = [
 
 function StudentLoans() {
   return <section id="student-loans" className="expertise section-shell section-pad"><div className="section-heading"><p className="eyebrow eyebrow--red">Student Loan Debt &amp; Penalties</p><h2>How Dave helps overseas student-loan borrowers</h2><p>Dave advises on engaging with Inland Revenue, seeking penalty relief where appropriate, presenting repayment or settlement proposals, and assessing possible enforcement or border risks.</p></div>
-    <div className="expertise-grid">{expertise.map(({ icon: Icon, title, text }, index) => <div className="expertise-item" key={title}><span className="expertise-item__number">0{index + 1}</span><Icon size={34} weight="light" /><h3>{title}</h3><p>{text}</p></div>)}</div><div className="practice-more"><p>Read the fuller overview transferred from Dave’s original student-loan specialty page.</p><a className="text-link" href={sitePath("student-loan-negotiations/")}>Read more about student-loan negotiations <ArrowRight size={18} /></a></div>
+    <div className="expertise-grid">{expertise.map(({ icon: Icon, title, text }, index) => <div className="expertise-item" key={title}><span className="expertise-item__number">0{index + 1}</span><Icon size={34} weight="light" /><h3>{title}</h3><p>{text}</p></div>)}</div><div className="practice-more"><a className="text-link" href={sitePath("student-loan-negotiations/")}>Read more about student-loan negotiations <ArrowRight size={18} /></a></div>
   </section>;
 }
 
@@ -117,7 +117,7 @@ const taxDebtAreas = [
 
 function TaxDebt() {
   return <section id="tax-debt" className="expertise tax-debt section-shell section-pad"><div className="section-heading"><p className="eyebrow eyebrow--red">Tax Disputes &amp; IRD Negotiation</p><h2>IRD tax-debt advice and negotiation</h2><p>Dave advises individuals and businesses on tax debt, financial-relief proposals, Inland Revenue disputes and enforcement. He works with the client’s accountant where returns, financial reconstruction or supporting schedules are required.</p></div>
-    <div className="expertise-grid">{taxDebtAreas.map(({ icon: Icon, title, text }, index) => <div className="expertise-item" key={title}><span className="expertise-item__number">0{index + 1}</span><Icon size={34} weight="light" /><h3>{title}</h3><p>{text}</p></div>)}</div><div className="practice-more"><p>Read the fuller overview transferred from Dave’s original IRD tax-debt specialty page.</p><a className="text-link" href={sitePath("ird-disputes-tax-penalties-negotiation/")}>Read more about IRD tax-debt negotiation <ArrowRight size={18} /></a></div>
+    <div className="expertise-grid">{taxDebtAreas.map(({ icon: Icon, title, text }, index) => <div className="expertise-item" key={title}><span className="expertise-item__number">0{index + 1}</span><Icon size={34} weight="light" /><h3>{title}</h3><p>{text}</p></div>)}</div><div className="practice-more"><a className="text-link" href={sitePath("ird-disputes-tax-penalties-negotiation/")}>Read more about IRD tax-debt negotiation <ArrowRight size={18} /></a></div>
   </section>;
 }
 
@@ -166,7 +166,7 @@ function ArchivePage() {
 function ArticlePage({ article }) {
   const showFeaturedImage = article.image && !article.suppressFeaturedImage && !article.contentHtml?.includes(`src=\"${article.image}\"`);
   const sourceUrl = article.sourceUrl ?? (!article.contentHtml ? article.url : undefined);
-  return <main id="main"><PageIntro eyebrow={`${article.subject} · ${article.type}`} title={article.title}>{article.publication} · {article.date}</PageIntro><article className="detail-page section-shell section-pad"><dl><div><dt>Publication</dt><dd>{article.publication}</dd></div><div><dt>Relationship</dt><dd>{article.relationship}</dd></div><div><dt>Published</dt><dd>{article.date}</dd></div></dl>{showFeaturedImage && <img className="article-featured" src={article.image} alt={article.imageAlt} width={article.imageWidth} height={article.imageHeight} />}{article.detailDescription && <p>{article.detailDescription}</p>}{article.contentHtml ? <><p className="archive-note">This is general information, not legal, tax or accounting advice.</p><div className="article-body" dangerouslySetInnerHTML={{ __html: article.contentHtml }} /></> : <>{!article.detailDescription && <p>{article.summary}</p>}<p>This record identifies the publication and Dave’s relationship to it from the linked source. It does not add or imply any unverified claim.</p></>}{sourceUrl && <ActionLink href={sourceUrl} external>View the original source</ActionLink>}<a className="text-link" href={sitePath("articles-media/")}>Return to the archive <ArrowRight size={18} /></a></article></main>;
+  return <main id="main"><PageIntro eyebrow={`${article.subject} · ${article.type}`} title={article.title}>{article.publication} · {article.date}</PageIntro><article className="detail-page section-shell section-pad"><dl><div><dt>Publication</dt><dd>{article.publication}</dd></div><div><dt>Relationship</dt><dd>{article.relationship}</dd></div><div><dt>Published</dt><dd>{article.date}</dd></div></dl>{showFeaturedImage && <img className="article-featured" src={article.image} alt={article.imageAlt} width={article.imageWidth} height={article.imageHeight} />}{article.detailDescription && <p>{article.detailDescription}</p>}{article.contentHtml ? <><p className="archive-note">This is general information, not legal, tax or accounting advice.</p><div className="article-body" dangerouslySetInnerHTML={{ __html: article.contentHtml }} /></> : <>{!article.detailDescription && <p>{article.summary}</p>}<p>This record identifies the publication and Dave’s relationship to it from the linked source. It does not add or imply any unverified claim.</p></>}<div className="article-source-actions">{article.pdf && <ActionLink href={asset(article.pdf)} download={article.pdfDownloadName || true}>Download the published PDF</ActionLink>}{sourceUrl && <ActionLink href={sourceUrl} external>View the original source</ActionLink>}</div><a className="text-link" href={sitePath("articles-media/")}>Return to the archive <ArrowRight size={18} /></a></article></main>;
 }
 
 const legalPages = {

@@ -41,7 +41,7 @@ function pageHtml(page) {
   const schema = matchingArticle ? {
     "@context": "https://schema.org",
     "@graph": [
-      { "@type": "Article", headline: matchingArticle.title, datePublished: matchingArticle.isoDate, author: matchingArticle.type === "Articles by Dave" ? { "@type": "Person", name: "Dave Ananth" } : { "@type": "Organization", name: matchingArticle.publication }, publisher: { "@type": "Organization", name: matchingArticle.publication }, mainEntityOfPage: url },
+      { "@type": "Article", headline: matchingArticle.title, datePublished: matchingArticle.isoDate, author: matchingArticle.author === "Dave Ananth" || matchingArticle.type === "Articles by Dave" ? { "@type": "Person", name: "Dave Ananth" } : { "@type": "Organization", name: matchingArticle.publication }, publisher: { "@type": "Organization", name: matchingArticle.publication }, mainEntityOfPage: url },
       { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${siteOrigin}/` }, { "@type": "ListItem", position: 2, name: "Articles & Media", item: `${siteOrigin}/articles-media/` }, { "@type": "ListItem", position: 3, name: matchingArticle.title, item: url }] },
     ],
   } : {
