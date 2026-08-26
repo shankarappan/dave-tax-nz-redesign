@@ -10,6 +10,7 @@ test("initial HTML contains substantive production content", async () => {
   assert.match(html, /IRD tax-debt advice and negotiation/);
   assert.match(html, /Read more about student-loan negotiations/);
   assert.match(html, /Read more about IRD tax-debt negotiation/);
+  assert.doesNotMatch(html, /Read the fuller overview transferred from Dave’s original/);
   assert.match(html, /Final determinations, processing timeframes, and decisions are at the discretion of Inland Revenue/);
   assert.match(html, /Recognised Seasonal Employer \(RSE\)/);
   assert.doesNotMatch(html, /secure sustainable outcomes and border certainty/);
@@ -22,6 +23,19 @@ test("initial HTML contains substantive production content", async () => {
   assert.doesNotMatch(html, /<div id="root"><\/div>/);
   assert.doesNotMatch(html, /shankarappan\.github\.io/);
   assert.doesNotMatch(html, /shankarappan\.chatgpt\.site/);
+});
+
+test("Home Voice community columns and PDF downloads are prerendered", async () => {
+  const archive = await readFile(new URL("../dist/client/articles-media/index.html", import.meta.url), "utf8");
+  assert.match(archive, /Safeguarding Your Legacy: Protecting the Business You’ve Built/);
+  assert.match(archive, /When a Mortgage-Free House and Gold Coins Raise Questions at IRD/);
+  assert.match(archive, /The Vegetable Boxes, Cabbage Leaves and Tax Records/);
+
+  const article = await readFile(new URL("../dist/client/articles-media/safeguarding-your-legacy-protecting-the-business-youve-built/index.html", import.meta.url), "utf8");
+  assert.match(article, /Download the published PDF/);
+  assert.match(article, /assets\/articles\/home-voice-1389-safeguarding-your-legacy\.pdf/);
+  assert.match(article, /originally published in Home Voice/);
+  assert.match(article, /View the original source/);
 });
 
 test("archive and privacy are separately prerendered", async () => {
