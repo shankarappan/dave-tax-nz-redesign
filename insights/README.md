@@ -4,7 +4,7 @@ Private, read-only owner reporting. React/Vite frontend, Cloudflare Worker backe
 
 ## Status — 31 August 2026
 
-Implemented and locally tested against the authorised Search Console connection. GA4 property `552154177` is connected; public tracking deployment is a separate step. Cloudflare Access is not yet enabled in the account, so **this dashboard is not publicly deployed**. Blank Access configuration intentionally returns HTTP 503, even for static assets. Do not describe untested production authentication as verified.
+Implemented and locally tested against the authorised Search Console connection. GA4 property `552154177` is connected; public tracking deployment is a separate step. Cloudflare Access is now enabled, but the owner email allowlist awaits confirmation, so **this dashboard is not publicly deployed**. Blank Access configuration intentionally returns HTTP 503, even for static assets. Do not describe untested production authentication as verified.
 
 The public website still uses GitHub Pages behind Cloudflare. This subproject does not replace it, change its DNS, or touch WordPress or email. The repository remains on GitHub; deploying a Worker does not move the repository into Cloudflare.
 
