@@ -1,6 +1,7 @@
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { createServer as createViteServer } from "vite";
+import { parse } from "jsonc-parser";
 import { buildReport, parseRange } from "../server/reports.ts";
 import "./catalog.mjs";
 
@@ -11,10 +12,16 @@ const vite = await createViteServer({
   server: { middlewareMode: true, hmr: false },
   appType: "spa",
 });
+const configErrors = [];
+const sharedConfig = parse(
+  await readFile(new URL("../wrangler.jsonc", import.meta.url), "utf8"),
+  configErrors,
+  { allowTrailingComma: true },
+);
+if (configErrors.length || !sharedConfig.vars)
+  throw new Error("Invalid shared preview configuration.");
 const config = {
-  ...JSON.parse(
-    await readFile(new URL("../wrangler.jsonc", import.meta.url), "utf8"),
-  ).vars,
+  ...sharedConfig.vars,
   GOOGLE_SERVICE_ACCOUNT_JSON: await readFile(
     new URL(
       "../../../.private-davetax-reporting/google-service-account.json",
