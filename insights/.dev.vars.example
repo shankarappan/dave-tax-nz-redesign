@@ -1,0 +1,3 @@
+# Real credentials belong in Cloudflare Worker secrets, never in the frontend.
+GOOGLE_SERVICE_ACCOUNT_JSON="replace-with-private-service-account-json"
+ALLOWED_EMAILS="owner@example.com"
