@@ -2,6 +2,27 @@
 // Keep the publication metadata, original issue links and PDF filenames exact.
 export const homeVoiceArticles = [
   {
+    slug: "true-cost-of-family-labor-business-profitability",
+    subject: "Other Commentary",
+    type: "Community Columns",
+    publication: "Home Voice",
+    author: "Dave Ananth",
+    relationship: "Written by Dave Ananth; originally published in Home Voice, page 2",
+    date: "28 August 2026",
+    isoDate: "2026-08-28",
+    title: "The True Cost of Family Labor: Why Your Business Might Not Be Making Money After All.",
+    summary: "Dave Ananth examines how unpaid family labour can mask a business’s true profitability, and why fair wages and transparent records matter.",
+    sourceUrl: "http://www.homevoice.co.nz/newEpaper/?jid=821397034790551552&iid=1543027157968752640&ino=2026-08-28",
+    image: "/assets/articles/home-voice-family-labor-2026-08-28.jpg",
+    imageAlt: "Home Voice Chinese-language column about family labour and business profitability, dated 28 August 2026, page 2, with Dave Ananth’s portrait.",
+    imageWidth: 893,
+    imageHeight: 1262,
+    imagePresentation: "document",
+    // TODO(client): supply the separate PDF and confirm the issue number.
+    // Instructions say 1392; supplied scan says 1389. Do not guess or fabricate a PDF.
+    contentHtml: `<h2>Article summary</h2><p>The article, authored by tax barrister Dave Ananth from Meridian Partners, addresses a common pitfall in family-run businesses where paper profits often mask underlying unprofitability because family members work long hours without receiving standard market wages. When evaluating a business for sale, potential buyers assess its true sustainable earning capacity by deducting the real market cost of replacing all unpaid or underpaid family labor with market-rate employees.</p><p>Failing to properly record wages or relying on unrecorded cash transactions creates significant legal, tax, and relational risks, including severe back-tax audits from Inland Revenue, wage compliance penalties, and internal family disputes. Ultimately, paying children and family members fair market wages and maintaining transparent financial books instills financial discipline, protects family trust, and presents a realistic, honest valuation that buyers can trust.</p>`,
+  },
+  {
     slug: "safeguarding-your-legacy-protecting-the-business-youve-built",
     subject: "Other Commentary",
     type: "Community Columns",
