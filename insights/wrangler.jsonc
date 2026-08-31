@@ -5,6 +5,7 @@
   "compatibility_date": "2026-08-31",
   "workers_dev": false,
   "preview_urls": false,
+  "routes": [{ "pattern": "insights.davetaxnz.nz", "custom_domain": true }],
   "secrets": { "required": ["GOOGLE_SERVICE_ACCOUNT_JSON", "ALLOWED_EMAILS"] },
   "assets": {
     "directory": "./dist",
@@ -15,8 +16,8 @@
     "GA_PROPERTY_ID": "552154177",
     "SEARCH_CONSOLE_SITE": "sc-domain:davetaxnz.nz",
     "DASHBOARD_ORIGIN": "https://insights.davetaxnz.nz",
-    "CF_ACCESS_TEAM_DOMAIN": "",
-    "CF_ACCESS_AUD": "",
+    "CF_ACCESS_TEAM_DOMAIN": "fancy-term-dd58.cloudflareaccess.com",
+    "CF_ACCESS_AUD": "2d8533b095804f05eb8fe7d9305bf41e898a44967b6944269a95616970362c9b",
     "GA_COLLECTION_START": "2026-08-31",
     "SITE_CUTOVER_DATE": "2026-08-20",
   },
