@@ -749,7 +749,8 @@ function App() {
                             <p>
                               {ga.status === "ready"
                                 ? `Collection starts ${date(ga.collectionStart)}.`
-                                : "The new property is connected; its tag still needs publishing."}{" "}
+                                : ga.message ||
+                                  "The new Analytics report is not yet available."}{" "}
                               Missing history is shown as unavailable, not zero.
                             </p>
                           </div>

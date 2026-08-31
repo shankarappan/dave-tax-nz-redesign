@@ -1,6 +1,7 @@
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { createServer as createViteServer } from "vite";
+import { parse } from "jsonc-parser";
 import { buildReport, parseRange } from "../server/reports.ts";
 import "./catalog.mjs";
 
@@ -11,7 +12,16 @@ const vite = await createViteServer({
   server: { middlewareMode: true, hmr: false },
   appType: "spa",
 });
+const configErrors = [];
+const sharedConfig = parse(
+  await readFile(new URL("../wrangler.jsonc", import.meta.url), "utf8"),
+  configErrors,
+  { allowTrailingComma: true },
+);
+if (configErrors.length || !sharedConfig.vars)
+  throw new Error("Invalid shared preview configuration.");
 const config = {
+  ...sharedConfig.vars,
   GOOGLE_SERVICE_ACCOUNT_JSON: await readFile(
     new URL(
       "../../../.private-davetax-reporting/google-service-account.json",
@@ -19,10 +29,6 @@ const config = {
     ),
     "utf8",
   ),
-  GA_PROPERTY_ID: "552154177",
-  SEARCH_CONSOLE_SITE: "sc-domain:davetaxnz.nz",
-  GA_COLLECTION_START: "",
-  SITE_CUTOVER_DATE: "2026-08-20",
 };
 const cache = new Map();
 createServer(async (req, res) => {
