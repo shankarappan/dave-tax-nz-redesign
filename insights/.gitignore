@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.wrangler/
+.dev.vars
+.env
+public/catalog.json
+public/brand.webp
+worker-configuration.d.ts

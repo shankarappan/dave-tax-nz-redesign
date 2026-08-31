@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "davetax-owner-insights",
+  "main": "server/index.ts",
+  "compatibility_date": "2026-08-31",
+  "workers_dev": false,
+  "preview_urls": false,
+  "secrets": { "required": ["GOOGLE_SERVICE_ACCOUNT_JSON", "ALLOWED_EMAILS"] },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+  },
+  "vars": {
+    "GA_PROPERTY_ID": "552154177",
+    "SEARCH_CONSOLE_SITE": "sc-domain:davetaxnz.nz",
+    "DASHBOARD_ORIGIN": "https://insights.davetaxnz.nz",
+    "CF_ACCESS_TEAM_DOMAIN": "",
+    "CF_ACCESS_AUD": "",
+    "GA_COLLECTION_START": "",
+    "SITE_CUTOVER_DATE": "2026-08-20",
+  },
+  "observability": { "enabled": true, "head_sampling_rate": 0.1 },
+}
