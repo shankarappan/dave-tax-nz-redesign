@@ -12,6 +12,9 @@ const vite = await createViteServer({
   appType: "spa",
 });
 const config = {
+  ...JSON.parse(
+    await readFile(new URL("../wrangler.jsonc", import.meta.url), "utf8"),
+  ).vars,
   GOOGLE_SERVICE_ACCOUNT_JSON: await readFile(
     new URL(
       "../../../.private-davetax-reporting/google-service-account.json",
@@ -19,10 +22,6 @@ const config = {
     ),
     "utf8",
   ),
-  GA_PROPERTY_ID: "552154177",
-  SEARCH_CONSOLE_SITE: "sc-domain:davetaxnz.nz",
-  GA_COLLECTION_START: "",
-  SITE_CUTOVER_DATE: "2026-08-20",
 };
 const cache = new Map();
 createServer(async (req, res) => {
