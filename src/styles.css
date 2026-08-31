@@ -91,6 +91,7 @@
 .detail-page dd{margin:8px 0 0}
 .detail-page .button{justify-self:start}
 .article-featured{display:block;width:100%;height:auto;max-height:580px;object-fit:cover}
+.article-featured--document{max-height:none;object-fit:contain}
 .archive-note{border-left:4px solid var(--gold);padding:18px 20px;background:#eee9e0;color:var(--ink)}
 .article-body{display:grid;gap:18px;min-width:0}
 .article-body>*{margin:0}
