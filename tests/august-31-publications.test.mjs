@@ -46,7 +46,9 @@ test("new details preserve supplied summaries, attribution, images and source li
   const homeVoice = await readPage(`articles-media/${slugs[2]}/index.html`);
   assert.match(homeVoice, /article-featured--document/);
   assert.match(homeVoice, /honest valuation that buyers can trust/);
-  assert.doesNotMatch(homeVoice, /Download the published PDF|\.pdf|Issue 1392|Issue 1389/);
+  assert.match(homeVoice, /Read PDF/);
+  assert.match(homeVoice, /assets\/articles\/home-voice-family-labor-2026-08-28\.pdf/);
+  assert.doesNotMatch(homeVoice, /Download the published PDF|Issue 1392|Issue 1389/);
   const css = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
   assert.match(css, /\.article-featured--document\{max-height:none;object-fit:contain\}/);
 });

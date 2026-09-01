@@ -25,14 +25,15 @@ test("initial HTML contains substantive production content", async () => {
   assert.doesNotMatch(html, /shankarappan\.chatgpt\.site/);
 });
 
-test("Home Voice community columns and PDF downloads are prerendered", async () => {
+test("Home Voice community columns and readable PDFs are prerendered", async () => {
   const archive = await readFile(new URL("../dist/client/articles-media/index.html", import.meta.url), "utf8");
   assert.match(archive, /Safeguarding Your Legacy: Protecting the Business You’ve Built/);
   assert.match(archive, /When a Mortgage-Free House and Gold Coins Raise Questions at IRD/);
   assert.match(archive, /The Vegetable Boxes, Cabbage Leaves and Tax Records/);
 
   const article = await readFile(new URL("../dist/client/articles-media/safeguarding-your-legacy-protecting-the-business-youve-built/index.html", import.meta.url), "utf8");
-  assert.match(article, /Download the published PDF/);
+  assert.match(article, /Read PDF/);
+  assert.doesNotMatch(article, /Download the published PDF/);
   assert.match(article, /assets\/articles\/home-voice-1389-safeguarding-your-legacy\.pdf/);
   assert.match(article, /originally published in Home Voice/);
   assert.match(article, /View the original source/);
