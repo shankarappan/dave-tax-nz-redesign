@@ -13,6 +13,7 @@ When implementing from a selected generated mock, treat that image as the source
 - Use only verified claims and links from davetaxnz.nz; do not reproduce invented media logos or case figures from the concept image.
 - Keep this project separate from the Timor-Leste Consulate repository.
 - Keep third-party footer attribution visually subordinate to DaveTaxNZ. The approved Infinite Minds AI lockup sits at the bottom-right and uses a multiply treatment so the supplied white logo canvas blends into the warm paper background.
+- Centre the “Powered by” label over the visible Infinite Minds logo while keeping the complete lockup anchored to the footer’s right edge.
 
 ## Owner-approved practice positioning
 
