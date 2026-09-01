@@ -18,11 +18,11 @@ Short archive-card descriptions summarise the supplied text; full summaries rema
 
 No image was invented, cropped or retouched. No full third-party article was copied from the web; the supplied summaries and assets are used.
 
-## Awaiting client clarification
+## Follow-up — 1 September 2026
 
 The document calls Home Voice Issue **1392**, while its supplied scan visibly says **1389**. Both give **28 August 2026**, page **2**. The website therefore uses the agreed date/page but does not assert an issue number in its text. The original image is unchanged.
 
-The separate Home Voice PDF named in the instructions was not attached and was not found in Downloads. No download link or substitute PDF was fabricated. Add the PDF and confirmed issue reference after the user supplies them.
+The separately supplied PDF is now available through the article's Read PDF action. The neutral public filename and website metadata do not assert an issue number because the supplied filename says 1392 while the visible publication header says 1389.
 
 ## Rollback
 
