@@ -5,6 +5,22 @@ import { homeVoiceArticles } from "./homeVoiceArticles.js";
 // Keep publisher titles, dates and source URLs exact.
 const externalArticles = [
   {
+    slug: "spinoff-overseas-student-loan-explainer",
+    subject: "Student Loans",
+    type: "Media Coverage",
+    publication: "The Spinoff",
+    relationship: "Video explainer referencing Dave Ananth’s guidance",
+    date: "2 September 2026",
+    isoDate: "2026-09-02",
+    title: "What happens if you leave NZ with a student loan?",
+    summary: "The Spinoff explains how overseas-borrower interest can increase a New Zealand student loan and cites Dave Ananth’s advice to engage with IRD before returning to New Zealand.",
+    sourceUrl: "https://www.youtube.com/watch?v=OhB5QYMllL4",
+    videoEmbedUrl: "https://www.youtube-nocookie.com/embed/OhB5QYMllL4?rel=0",
+    videoTitle: "What happens if you leave NZ with a student loan? — The Spinoff",
+    videoPresentation: "portrait",
+    contentHtml: `<h2>Video summary</h2><p>In this short explainer, The Spinoff outlines how moving overseas changes the treatment of a New Zealand student loan. The video says overseas-borrower interest can apply after 152 consecutive days away and be backdated to the day after departure. It illustrates how compounding interest and late-payment interest can cause an unpaid balance to grow substantially over time.</p><p>The video references Dave Ananth’s practical guidance for overseas borrowers: if you have overdue New Zealand student-loan debt and are planning to return to New Zealand, engage with Inland Revenue before you travel rather than ignoring the debt.</p><h2>Figures stated in the video</h2><p>As published on 2 September 2026, the video states an overseas-borrower interest rate of 5.6%, a late-payment interest rate of 9.6% on overdue repayments, and approximately 115,000 overseas-based borrowers collectively owing $4.5 billion. Rates, thresholds and Inland Revenue policy can change, so borrowers should verify the current rules and obtain advice for their circumstances.</p>`,
+  },
+  {
     slug: "section-145a-overseas-student-loan-debt",
     subject: "Student Loans",
     type: "Articles by Dave",
@@ -37,6 +53,9 @@ const externalArticles = [
     imageAlt: "Client-supplied screenshot of the Three News bulletin reporting on National’s student-loan proposals.",
     imageWidth: 1546,
     imageHeight: 887,
+    videoEmbedUrl: "https://players.brightcove.net/3812193411001/jUnZ8Sjxj_default/index.html?videoId=6404297244112&t=43",
+    videoTitle: "Three News coverage featuring Dave Ananth",
+    videoCaption: "Official ThreeNow player. Playback opens at 0:43; Dave Ananth’s segment concludes at 4:09.",
     contentHtml: `<h2>Broadcast summary</h2><p>The National Party's latest policy announcement—termed the "Back Pocket Boost for Graduates”, proposes structural changes to the Student Loan Scheme if re-elected. Media reporting highlights a two-tiered strategy aimed at incentivizing graduates to remain in New Zealand while taking a stricter stance on overseas defaults.</p><p>In the segment from 0:43 to 4:09 of the Three News bulletin (available to view at ThreeNow), Dave Ananth, tax barrister and specialist on overseas student loan debt at Meridian Partners, emphasizes that while student loan debt is taxpayer-funded and must ultimately be settled, increasing penalties for overseas borrowers is counterproductive if it drives further disengagement.</p>`,
   },
   { slug: "rnz-half-a-million-people-owe-tax", subject: "IRD Tax Debt", type: "Media Coverage", publication: "RNZ", relationship: "Coverage about tax debt and Inland Revenue", date: "11 August 2026", isoDate: "2026-08-11", title: "Over half a million people owe tax. How did this happen?", summary: "RNZ examines how tax debt accumulated and what Inland Revenue’s debt book means for taxpayers.", detailDescription: "RNZ examines the scale of New Zealand’s overdue-tax problem, why debt has accumulated across hundreds of thousands of taxpayers and how Inland Revenue is responding. The original RNZ report provides the full context for taxpayers facing arrears.", url: "https://www.rnz.co.nz/news/business/957513/over-half-a-million-people-owe-tax-how-did-this-happen" },
