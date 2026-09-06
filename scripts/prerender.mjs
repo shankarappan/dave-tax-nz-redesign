@@ -89,6 +89,13 @@ for (const page of pages) {
 
 const redirects = [
   ["book-a-consultation", "/#contact"],
+  ["contact", "/#contact"],
+  ["about-dave", "/#about"],
+  ["category/student-loans", "/articles-media/"],
+  ["2026/07/28/resolve-an-overseas-student-loan-default-180k-deal", "/articles-media/overseas-student-loan-default-deal/"],
+  ["2026/01/15", "/articles-media/student-loan-interest-dave-ananth-analysis/"],
+  ["2026/01/13", "/articles-media/"],
+  ["2025/12/04", "/articles-media/ird-compliance-return-kpi-impact-on-nz-taxpayers/"],
   ...articles.flatMap((article) => {
     const legacyUrls = [...new Set([
       ...(article.publication === "DaveTaxNZ" ? [article.url] : []),
@@ -115,6 +122,8 @@ writeFileSync(path.join(clientDir, "404.html"), pageHtml(notFound));
 writeFileSync(path.join(clientDir, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${siteOrigin}/sitemap.xml\n`);
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.map((page) => `  <url><loc>${siteOrigin}/${page.path ? `${page.path}/` : ""}</loc></url>`).join("\n")}\n</urlset>\n`;
 writeFileSync(path.join(clientDir, "sitemap.xml"), sitemap);
+const legacySitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <sitemap><loc>${siteOrigin}/sitemap.xml</loc></sitemap>\n</sitemapindex>\n`;
+writeFileSync(path.join(clientDir, "sitemap_index.xml"), legacySitemapIndex);
 rmSync(ssrDir, { recursive: true, force: true });
 
-console.log(`Prerendered ${pages.length} substantive HTML routes, ${redirects.length} legacy redirects, sitemap.xml and 404.html`);
+console.log(`Prerendered ${pages.length} substantive HTML routes, ${redirects.length} legacy redirects, sitemap files and 404.html`);
