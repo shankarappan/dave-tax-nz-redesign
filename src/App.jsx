@@ -51,7 +51,7 @@ function Hero() {
       <a className="alert-link" href="#student-loans"><ShieldCheck size={35} weight="light" /><span>Living overseas with New Zealand student-loan debt? Review the practical options.</span><ArrowRight size={20} /></a>
       <div className="button-row"><ActionLink href="#contact" event="consultation_click">Discuss your matter with Dave</ActionLink><ActionLink href={phoneHref} secondary event="call_click"><Phone size={21} weight="fill" /> Call Dave</ActionLink></div>
     </div>
-    <div className="hero__portrait"><img src={asset("dave-ananth-hero.webp")} alt="Dave Ananth, student-loan lawyer and IRD negotiator" width="1280" height="1198" /><div className="portrait-caption"><strong>Dave Ananth</strong><span>Partner, Meridian Partners</span><small>Tax Barrister</small></div></div>
+    <div className="hero__portrait"><img src={asset("dave-ananth-hero-2026.webp")} alt="Dave Ananth, student-loan lawyer and IRD negotiator" width="1145" height="1374" /><div className="portrait-caption"><strong>Dave Ananth</strong><span>Partner, Meridian Partners</span><small>Tax Barrister</small></div></div>
   </section>;
 }
 
