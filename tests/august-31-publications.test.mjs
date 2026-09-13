@@ -31,7 +31,7 @@ test("new details preserve supplied summaries, attribution, images and source li
     }
     assert.ok(html.includes(article.sourceUrl.replaceAll("&", "&amp;")));
     assert.match(html, /View the original source/);
-    assert.match(html, /This is general information, not legal, tax or accounting advice/);
+    assert.match(html, article.mediaV8 ? /This material is general information only and is not legal or financial advice/ : /This is general information, not legal, tax or accounting advice/);
     assert.match(html, /property="og:type" content="article"/);
     assert.ok(html.includes(`https://davetaxnz.nz${article.image}`));
     const image = await stat(new URL(`../dist/client${article.image}`, import.meta.url));
@@ -43,8 +43,8 @@ test("new details preserve supplied summaries, attribution, images and source li
   assert.match(interest, /permanently resolve their historical debt/);
   const three = await readPage(`articles-media/${slugs[1]}/index.html`);
   assert.match(three, /0:43–4:09/);
-  assert.match(three, /if re-elected/);
-  assert.match(three, /counterproductive if it drives further disengagement/);
+  assert.match(three, /proposed changes/);
+  assert.match(three, /increasing penalties may drive borrowers who have already disengaged further away/);
   const homeVoice = await readPage(`articles-media/${slugs[2]}/index.html`);
   assert.match(homeVoice, /article-featured--document/);
   assert.match(homeVoice, /honest valuation that buyers can trust/);

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { mediaSchema } from "../src/media-schema.mjs";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { build } from "vite";
@@ -32,12 +33,12 @@ const pages = [
   { path: "legal-disclaimer", title: "Legal & Engagement Disclaimer | DaveTaxNZ", description: "Important information about general website content, contact, confidentiality and formal legal engagement." },
 ];
 
-for (const article of articles) pages.push({ path: `articles-media/${article.slug}`, title: `${article.title} | Dave Ananth`, description: article.summary });
+for (const article of articles) pages.push({ path: (article.path || `/articles-media/${article.slug}/`).replace(/^\/|\/$/g, ""), title: `${article.title} | Dave Ananth`, description: article.summary });
 
 function pageHtml(page) {
   const pathname = `/${page.path}${page.path ? "/" : ""}`;
   const url = `${siteOrigin}${pathname}`;
-  const matchingArticle = articles.find((article) => page.path === `articles-media/${article.slug}`);
+  const matchingArticle = articles.find((article) => page.path === (article.path || `/articles-media/${article.slug}/`).replace(/^\/|\/$/g, ""));
   const schema = matchingArticle ? {
     "@context": "https://schema.org",
     "@graph": [
@@ -51,6 +52,7 @@ function pageHtml(page) {
       { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${siteOrigin}/` }, ...(page.path ? [{ "@type": "ListItem", position: 2, name: page.title.split(" | ")[0], item: url }] : [])] },
     ],
   };
+  if (matchingArticle?.mediaV8) schema["@graph"] = mediaSchema(matchingArticle, siteOrigin, url);
   const content = renderToStaticMarkup(React.createElement(App, { initialPath: pathname }));
   let html = template
     .replaceAll("__PAGE_TITLE__", page.title)

@@ -33,8 +33,9 @@ test("the existing Three News record uses the official player at Dave's segment"
   const article = articles.find((item) => item.slug === "three-news-student-loan-reform-dave-ananth");
   const html = await readPage("articles-media/three-news-student-loan-reform-dave-ananth/index.html");
   assert.match(article.videoEmbedUrl, /players\.brightcove\.net/);
-  assert.match(article.videoEmbedUrl, /videoId=6404297244112&t=43/);
-  assert.match(html, /Playback opens at 0:43; Dave Ananth’s segment concludes at 4:09/);
+  assert.equal(new URL(article.videoEmbedUrl).searchParams.get("videoId"), "6404297244112");
+  assert.equal(new URL(article.videoEmbedUrl).searchParams.get("t"), "43");
+  assert.match(html, /Player requests a start at 0:43; the relevant segment ends at approximately 4:09/);
   assert.doesNotMatch(html, /class="article-featured/);
   assert.match(html, /View the original source/);
 });
