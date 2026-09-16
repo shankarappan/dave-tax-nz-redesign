@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowRight, Check, EnvelopeSimple, FileText, GlobeHemisphereWest, List, Phone, Quotes, ShieldCheck, Student, WhatsappLogo, X } from "@phosphor-icons/react";
-import { articles, mediaTypes, subjects } from "./articles";
+import { archiveArticles, articles, mediaTypes, subjects } from "./articles";
 import { testimonials } from "./testimonials";
 
 const phoneDisplay = "+64 21 021 68888";
@@ -159,7 +159,7 @@ function ArchivePage() {
   const [subject, setSubject] = useState("All subjects");
   const [type, setType] = useState("All types");
   const [query, setQuery] = useState("");
-  const visible = useMemo(() => { const search = query.trim().toLowerCase(); return articles.filter((article) => (subject === "All subjects" || article.subject === subject) && (type === "All types" || article.type === type) && (!search || [article.title, article.summary, article.publication, article.relationship, article.subject, article.type].some((value) => value.toLowerCase().includes(search)))); }, [subject, type, query]);
+  const visible = useMemo(() => { const search = query.trim().toLowerCase(); return archiveArticles.filter((article) => (subject === "All subjects" || article.subject === subject) && (type === "All types" || article.type === type) && (!search || [article.title, article.summary, article.publication, article.relationship, article.subject, article.type].some((value) => value.toLowerCase().includes(search)))); }, [subject, type, query]);
   return <><PageIntro eyebrow="Publication and media platform" title="Articles & Media Archive">Search by subject and publication type. External source links open the original publisher in a new tab.</PageIntro><main id="main" className="archive section-shell section-pad"><div className="archive-tools"><label>Search archive<input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search titles, publications and topics" /></label><label>Subject<select value={subject} onChange={(event) => setSubject(event.target.value)}><option>All subjects</option>{subjects.map((item) => <option key={item}>{item}</option>)}</select></label><label>Type<select value={type} onChange={(event) => setType(event.target.value)}><option>All types</option>{mediaTypes.map((item) => <option key={item}>{item}</option>)}</select></label></div><p className="archive-count" aria-live="polite">{visible.length} {visible.length === 1 ? "item" : "items"}</p><div className="article-grid">{visible.map((article) => <ArticleCard article={article} key={article.slug} />)}</div>{!visible.length && <p>No items match those filters.</p>}</main></>;
 }
 

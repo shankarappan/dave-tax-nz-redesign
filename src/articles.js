@@ -103,7 +103,29 @@ const externalArticles = [
   { slug: "interest-overseas-student-loans", subject: "Student Loans", type: "Media Coverage", publication: "Interest.co.nz", relationship: "Quotes Dave Ananth", date: "2026", isoDate: "2026", title: "Overseas student loan debt is keeping skilled Kiwis from returning home", summary: "Interest.co.nz reports on growing overseas student-loan balances and their effect on New Zealanders abroad.", detailDescription: "Interest.co.nz reports on the effect of growing overseas student-loan balances on skilled New Zealanders living abroad, including concerns about repayment obligations and returning home. The original article contains the full report and Dave Ananth’s comments.", url: "https://www.interest.co.nz/business/138466/dave-ananth-says-overseas-student-loan-problem-not-just-about-losing-money-its-also" },
 ];
 
-const assembledArticles = [...wordpressArticles, ...externalArticles, ...homeVoiceArticles, ...clientMedia].sort((a, b) => b.isoDate.localeCompare(a.isoDate));
+function applySeptemberV8Amendments(article) {
+  let contentHtml = article.contentHtml;
+
+  if (article.slug === "can-ird-arrest-me-at-the-border-over-my-student-loan") {
+    contentHtml = contentHtml?.replace(
+      "<li><strong>Website: davetaxnz.nz/book-a-consultation</strong></li>",
+      '<li><strong>Website: <a href="/book-a-consultation/">davetaxnz.nz/book-a-consultation</a></strong></li>',
+    );
+  }
+
+  if (["three-news-student-loan-reform-dave-ananth", "student-loan-airport-arrest-warrants"].includes(article.slug)) {
+    contentHtml = contentHtml?.replace(
+      '<a href="https://mplaw.nz/contact/">Contact Meridian Partners</a>',
+      '<a href="/#contact">Contact Dave</a>',
+    );
+  }
+
+  return contentHtml === article.contentHtml ? article : { ...article, contentHtml };
+}
+
+const assembledArticles = [...wordpressArticles, ...externalArticles, ...homeVoiceArticles, ...clientMedia]
+  .map(applySeptemberV8Amendments)
+  .sort((a, b) => b.isoDate.localeCompare(a.isoDate));
 
 for (const article of assembledArticles) {
   if (article.language && article.language !== "English" && (!article.pdf || !article.image)) {
@@ -112,6 +134,13 @@ for (const article of assembledArticles) {
 }
 
 export const articles = assembledArticles;
+
+// Podcasts lead the complete archive, while the homepage's "latest" preview
+// continues to use the chronological `articles` list.
+export const archiveArticles = [...assembledArticles].sort((a, b) => {
+  const podcastPriority = Number(b.type === "Podcasts") - Number(a.type === "Podcasts");
+  return podcastPriority || b.isoDate.localeCompare(a.isoDate);
+});
 
 export const subjects = ["Student Loans", "IRD Tax Debt", "Tax Policy", "Crypto Tax", "Other Commentary"];
 export const mediaTypes = ["Articles by Dave", "Media Interviews", "Media Coverage", "Community Columns", "Podcasts"];
