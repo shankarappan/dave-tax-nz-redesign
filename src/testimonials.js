@@ -2,6 +2,11 @@
 // Do not rewrite or combine testimonials.
 export const testimonials = [
   {
+    "name": "Annette Flintham",
+    "date": "September 2026",
+    "quote": "My experience with Dave has without hesitation revived my trust in human nature. This man, a barrister, a professional man, listened, gave me the time and confidence to discuss various issues that have plagued me and my son for many years with no end in sight, no peace was to be had. Dave in his calm relaxed yet professionalism gave sound and encouraging advice. A man I consider a gem to the profession, to his Firm, to himself, someone I would call without a second thought. I cannot rate Dave high enough. Thank you Dave you are etched in my mind for ever."
+  },
+  {
     "name": "Michael Bolton",
     "date": "August 2026",
     "quote": "Professional, honest, dependable, approachable, transparent, efficient and incredibly knowledgeable are just some of the words I would use to describe Dave and his team.\n\nThey handled our historical NZ student loan issue with professionalism and expertise, and from the outset they took away an enormous amount of stress and uncertainty. They also helped us avoid a significant financial cost, which we are incredibly grateful for.\n\nWe genuinely can’t thank Dave and his team enough. Their knowledge, communication and personal approach made what had been a very stressful situation feel completely manageable. I wouldn’t hesitate to recommend them to anyone needing expert advice and support."

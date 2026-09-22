@@ -50,7 +50,9 @@ test("archive and privacy are separately prerendered", async () => {
 
 test("complete testimonial archive is prerendered with inline disclosure controls", async () => {
   const html = await readFile(new URL("../dist/client/testimonials/index.html", import.meta.url), "utf8");
-  assert.equal((html.match(/class="testimonial-card"/g) ?? []).length, 41);
+  assert.equal((html.match(/class="testimonial-card"/g) ?? []).length, 42);
+  assert.match(html, /Annette Flintham/);
+  assert.match(html, /revived my trust in human nature/);
   assert.match(html, /Michael Bolton/);
   assert.match(html, /Stewart C/);
   assert.match(html, /Professional, honest, dependable, approachable, transparent, efficient and incredibly knowledgeable/);
