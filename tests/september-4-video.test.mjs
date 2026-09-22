@@ -29,13 +29,14 @@ test("The video is playable on its detail page through a privacy-enhanced embed"
   assert.ok(sitemap.includes(`https://davetaxnz.nz/articles-media/${slug}/`));
 });
 
-test("the existing Three News record uses the official player at Dave's segment", async () => {
+test("the Three News record uses the client-supplied broadcast image instead of a video player", async () => {
   const article = articles.find((item) => item.slug === "three-news-student-loan-reform-dave-ananth");
   const html = await readPage("articles-media/three-news-student-loan-reform-dave-ananth/index.html");
-  assert.match(article.videoEmbedUrl, /players\.brightcove\.net/);
-  assert.equal(new URL(article.videoEmbedUrl).searchParams.get("videoId"), "6404297244112");
-  assert.equal(new URL(article.videoEmbedUrl).searchParams.get("t"), "43");
-  assert.match(html, /Player requests a start at 0:43; the relevant segment ends at approximately 4:09/);
-  assert.doesNotMatch(html, /class="article-featured/);
+  assert.equal(article.videoEmbedUrl, undefined);
+  assert.equal(article.image, "/assets/articles/three-news-student-loan-reform-2026-08-30-v9.png");
+  assert.match(html, /class="article-featured"/);
+  assert.match(html, /three-news-student-loan-reform-2026-08-30-v9\.png/);
+  assert.doesNotMatch(html, /class="article-video-wrap/);
+  assert.doesNotMatch(html, /embedded player is provided by Three News/);
   assert.match(html, /View the original source/);
 });

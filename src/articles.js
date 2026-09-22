@@ -6,6 +6,23 @@ import { homeVoiceArticles } from "./homeVoiceArticles.js";
 // Keep publisher titles, dates and source URLs exact.
 const externalArticles = [
   {
+    slug: "the-panel-sue-bradford-david-farrar-dave-ananth",
+    subject: "Student Loans",
+    type: "Podcasts",
+    publication: "RNZ · The Panel",
+    relationship: "Radio interview featuring Dave Ananth; panellists Sue Bradford and David Farrar",
+    date: "17 September 2026",
+    isoDate: "2026-09-17",
+    title: "The Panel with Sue Bradford and David Farrar – featuring Dave Ananth",
+    summary: "RNZ’s The Panel interviews Dave Ananth about proposed changes to border enforcement for overseas student-loan defaulters.",
+    sourceUrl: "https://www.rnz.co.nz/national/programmes/thepanel/audio/2019052346/the-panel-with-sue-bradford-and-david-farrar",
+    image: "/assets/articles/rnz-the-panel-student-loan-2026-09-17.png",
+    imageAlt: "RNZ page for The Panel with Sue Bradford and David Farrar, published 17 September 2026.",
+    imageWidth: 1105,
+    imageHeight: 737,
+    contentHtml: `<h2>Panellists</h2><p>Sue Bradford and David Farrar</p><h2>Audio summary</h2><p>In this <a href="https://www.rnz.co.nz/national/programmes/thepanel/audio/2019052346/the-panel-with-sue-bradford-and-david-farrar" target="_blank" rel="noopener noreferrer">audio segment (33:30–40:15)</a> on RNZ’s The Panel, hosts Sue Bradford and David Farrar interview tax lawyer Dave Ananth about proposed tax law changes aimed at overseas student loan defaulters. The proposed legislation would lower the threshold for Inland Revenue to arrest defaulting expats at the New Zealand border by removing the strict requirement to prove formal delivery of default notices. Ananth warns that the fear of border arrest will cause expats to avoid returning home entirely, while compounding interest and outdated contact details make resolution difficult. Panelist Sue Bradford echoes concerns that punitive measures punish struggling Kiwis and alienate the diaspora, whereas David Farrar argues that strict enforcement is necessary to protect taxpayers and recover billions in unpaid debt.</p>`,
+  },
+  {
     slug: "expats-owing-student-debt-higher-risk-arrest",
     subject: "Student Loans",
     type: "Media Coverage",
@@ -86,17 +103,12 @@ const externalArticles = [
     "title": "Three News: Student Loan Reform and Overseas Borrowers",
     "summary": "Dave Ananth appeared on Three News on 30 August 2026 to discuss proposed student-loan reforms and the treatment of overseas-based borrowers.",
     "sourceUrl": "https://players.brightcove.net/3812193411001/jUnZ8Sjxj_default/index.html?t=43&videoId=6404297244112",
-    "videoEmbedUrl": "https://players.brightcove.net/3812193411001/jUnZ8Sjxj_default/index.html?t=43&videoId=6404297244112",
-    "videoTitle": "Three News: Student Loan Reform and Overseas Borrowers — 30 August 2026",
-    "videoCaption": "Three News broadcast, 30 August 2026. Player requests a start at 0:43; the relevant segment ends at approximately 4:09. The publisher’s player currently reports this video as unavailable; the written summary remains available below.",
     "contentHtml": "<h2>Broadcast summary</h2><p>Three News reported on proposed changes to New Zealand’s Student Loan Scheme in its broadcast on 30 August 2026. The report examined proposals intended to encourage graduates to remain in New Zealand while taking a stricter approach to overseas defaults. Dave Ananth appeared as a tax barrister and Partner at Meridian Partners specialising in overseas student-loan matters.</p><p>Dave acknowledged that student loans are taxpayer-funded obligations that must ultimately be addressed. His concern was about how a repayment policy works in practice. Simply increasing penalties may drive borrowers who have already disengaged further away from Inland Revenue, rather than encouraging renewed contact, repayment and compliance. The discussion placed that concern within the wider public debate about the proposed reforms.</p><p>This was independent national media coverage of Dave’s student-loan policy analysis. It was not an advertisement, a prediction about an individual borrower’s matter or an announcement that any particular proposal had become law. Borrowers should distinguish the policy discussion in the broadcast from the rules applying to their own circumstances and from any current IRD decision.</p><p>The embedded player is provided by Three News through Brightcove; the footage is not hosted by DaveTaxNZ. The relevant segment begins at approximately 0:43 and concludes at approximately 4:09. This written account is a summary, not a verbatim transcript. Three News remains the publisher and its inclusion does not imply endorsement of DaveTaxNZ or Meridian Partners. Formal legal services are provided through Meridian Partners, following the appropriate checks and engagement process.</p><h2>Practical points</h2><ul><li>Read the report in its original 30 August 2026 policy context.</li><li>Distinguish proposed reforms from rules applying to an individual matter.</li><li>Engagement with IRD and borrower compliance are central themes.</li><li>Media commentary does not predict an individual outcome.</li></ul><h2>Related information</h2><ul><li><a href=\"/student-loan-negotiations/\">Overseas student-loan advice</a></li><li><a href=\"/articles-media/section-145a-overseas-student-loan-debt/\">Section 145A and overseas student-loan debt</a></li><li><a href=\"/articles-media/can-ird-arrest-me-at-the-border-over-my-student-loan/\">Student-loan border enforcement</a></li><li><a href=\"/#about\">About Dave Ananth</a></li><li><a href=\"https://mplaw.nz/contact/\">Contact Meridian Partners</a></li><li><a href=\"/student-loan-airport-arrest-warrants/\">Student-loan arrest warrants and airport enforcement</a></li></ul><p><a class=\"button\" data-event=\"enquiry_click\" href=\"https://mplaw.nz/contact/?practice=student-loan-debt-ird-negotiation\">Discuss an overseas student-loan matter</a></p><p>Please keep your initial enquiry brief. Do not send detailed confidential information before conflict and engagement checks.</p><p>This material is general information only and is not legal or financial advice. Outcomes depend on the facts and the law applying to each matter. Past outcomes do not guarantee future results. Inland Revenue and the courts retain responsibility for their decisions.</p><p>DaveTaxNZ is Dave Ananth’s professional information and media platform. Formal legal services are provided through Meridian Partners.</p>",
     "mediaV8": true,
-    "image": "/assets/articles/three-news-student-loan-reform-2026-08-30.jpg",
-    "imageAlt": "Client-supplied screenshot of the Three News bulletin reporting on student-loan proposals.",
+    "image": "/assets/articles/three-news-student-loan-reform-2026-08-30-v9.png",
+    "imageAlt": "Three News broadcast image showing a reporter and studio presenter during coverage of student-loan proposals.",
     "imageWidth": 1546,
     "imageHeight": 887,
-    "videoThumbnail": "https://davetaxnz.nz/assets/articles/three-news-student-loan-reform-2026-08-30.jpg",
-    "videoUploadDate": "2026-08-30"
   },
   { slug: "rnz-half-a-million-people-owe-tax", subject: "IRD Tax Debt", type: "Media Coverage", publication: "RNZ", relationship: "Coverage about tax debt and Inland Revenue", date: "11 August 2026", isoDate: "2026-08-11", title: "Over half a million people owe tax. How did this happen?", summary: "RNZ examines how tax debt accumulated and what Inland Revenue’s debt book means for taxpayers.", detailDescription: "RNZ examines the scale of New Zealand’s overdue-tax problem, why debt has accumulated across hundreds of thousands of taxpayers and how Inland Revenue is responding. The original RNZ report provides the full context for taxpayers facing arrears.", url: "https://www.rnz.co.nz/news/business/957513/over-half-a-million-people-owe-tax-how-did-this-happen" },
   { slug: "rnz-overdue-tax", subject: "IRD Tax Debt", type: "Media Interviews", publication: "RNZ", relationship: "Quotes Dave Ananth", date: "1 July 2026", isoDate: "2026-07-01", title: "What should you do about overdue tax?", summary: "RNZ reports on Inland Revenue enforcement and practical steps for taxpayers with overdue tax.", detailDescription: "RNZ outlines practical considerations for people with overdue tax, including engaging with Inland Revenue early and understanding possible repayment options. The original report contains the complete guidance and Dave Ananth’s comments.", url: "https://www.rnz.co.nz/news/personal-finance/650497/what-should-you-do-about-overdue-tax" },
@@ -117,6 +129,13 @@ function applySeptemberV8Amendments(article) {
     contentHtml = contentHtml?.replace(
       '<a href="https://mplaw.nz/contact/">Contact Meridian Partners</a>',
       '<a href="/#contact">Contact Dave</a>',
+    );
+  }
+
+  if (article.slug === "three-news-student-loan-reform-dave-ananth") {
+    contentHtml = contentHtml?.replace(
+      "The embedded player is provided by Three News through Brightcove; the footage is not hosted by DaveTaxNZ.",
+      "The original Three News source is linked below; the footage is not hosted by DaveTaxNZ.",
     );
   }
 

@@ -10,7 +10,9 @@ const slugs = [
 const readPage = (path) => readFile(new URL(`../dist/client/${path}`, import.meta.url), "utf8");
 
 test("16 September client publications appear once and newest first", async () => {
-  assert.deepEqual(articles.slice(0, 2).map(({ slug }) => slug), slugs);
+  const positions = slugs.map((slug) => articles.findIndex((article) => article.slug === slug));
+  assert.ok(positions[0] >= 0);
+  assert.equal(positions[1], positions[0] + 1);
   const archive = await readPage("articles-media/index.html");
   const sitemap = await readPage("sitemap.xml");
   for (const slug of slugs) {
