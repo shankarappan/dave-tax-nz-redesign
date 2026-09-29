@@ -103,7 +103,7 @@ const redirects = [
       ...(article.publication === "DaveTaxNZ" ? [article.url] : []),
       ...(article.legacyUrl ? [article.legacyUrl] : []),
       ...(article.legacyAliases ?? []),
-    ])];
+    ].filter(Boolean))];
     return legacyUrls.map((legacyUrl) => [new URL(legacyUrl).pathname.replace(/^\//, "").replace(/\/$/, ""), `/articles-media/${article.slug}/`]);
   }),
 ];
