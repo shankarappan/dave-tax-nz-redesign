@@ -1,37 +1,54 @@
-name: Deploy to GitHub Pages
-
+name: Website release
 on:
   push:
     branches: [main]
   workflow_dispatch:
-
+    inputs:
+      publish:
+        description: Publish this exact revision after review
+        type: boolean
+        default: false
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
 concurrency:
-  group: pages
-  cancel-in-progress: true
-
+  group: website-production
+  cancel-in-progress: false
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: '22'
           cache: npm
       - run: npm ci
       - run: npm run build
-      - uses: actions/configure-pages@v5
+      - run: npm run test:sites
+      - name: Record exact release in static output
+        env:
+          OUTPUT: dist/client
+        run: |
+          node --input-type=module <<'JS'
+          import {readFileSync, mkdirSync, writeFileSync} from 'node:fs';
+          const release = JSON.parse(readFileSync('.website-release.json', 'utf8'));
+          mkdirSync(process.env.OUTPUT + '/.well-known', {recursive: true});
+          writeFileSync(process.env.OUTPUT + '/.well-known/website-release.json', JSON.stringify({site: release.site, version: release.version, tree_sha256: release.tree_sha256, commit: process.env.GITHUB_SHA}) + '\n');
+          JS
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/client
-      - name: Deploy to GitHub Pages
+  deploy:
+    needs: build
+    if: github.event_name == 'push' || inputs.publish == true
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - uses: actions/deploy-pages@v4
         id: deployment
-        uses: actions/deploy-pages@v4
