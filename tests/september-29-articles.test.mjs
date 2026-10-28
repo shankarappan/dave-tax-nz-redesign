@@ -8,11 +8,10 @@ const returningSlug = "returning-new-zealand-old-student-loan-five-things";
 const rnzSlug = "labours-583m-student-debt-deal-australian-pay";
 const readPage = (path) => readFile(new URL(`../dist/client/${path}`, import.meta.url), "utf8");
 
-test("27 September return-to-New-Zealand article is complete and newest", async () => {
+test("27 September return-to-New-Zealand article is complete", async () => {
   const article = articles.find(({ slug }) => slug === returningSlug);
 
   assert.ok(article);
-  assert.equal(articles[0].slug, returningSlug);
   assert.equal(article.author, "Dave Ananth");
   assert.equal(article.date, "27 September 2026");
   assert.equal(article.type, "Articles by Dave");
@@ -35,23 +34,27 @@ test("27 September return-to-New-Zealand article is complete and newest", async 
   assert.ok(image.size > 100_000);
 });
 
-test("17 September RNZ policy discussion includes the supplied summary and source", async () => {
-  const article = articles.find(({ slug }) => slug === rnzSlug);
+test("29 September Newsroom report has its correct author, date and original URL", async () => {
+  const article = articles.find(({ slug }) => slug === "labours-583m-student-debt-deal-australian-pay");
 
   assert.ok(article);
   assert.equal(article.title, "Labour’s $583m student debt deal fails to blunt lure of Australian pay");
-  assert.equal(article.publication, "RNZ · The Panel");
-  assert.equal(article.date, "17 September 2026");
-  assert.match(article.relationship, /Sue Bradford and David Farrar/);
+  assert.equal(article.publication, "Newsroom");
+  assert.equal(article.author, "Alice Peacock");
+  assert.equal(article.date, "29 September 2026");
+  assert.equal(article.isoDate, "2026-09-29");
+  assert.equal(article.relationship, "Written Newsroom coverage featuring Dave Ananth’s comments");
   assert.match(article.contentHtml, /\$583\.4 million initiative/);
-  assert.match(article.contentHtml, /\$2\.49 billion in overdue student debt/);
-  assert.match(article.contentHtml, /pragmatic, commercial, case-by-case approach/);
-  assert.match(article.sourceUrl, /rnz\.co\.nz\/national\/programmes\/thepanel\/audio\/2019052346/);
+  assert.match(article.contentHtml, /Dave Ananth/);
+  assert.doesNotMatch(article.contentHtml, /Sue Bradford|David Farrar|Panellists/);
+  assert.equal(article.sourceUrl, "https://newsroom.co.nz/2026/09/29/labours-583m-student-debt-deal-fails-to-blunt-lure-of-australian-pay/");
+  assert.equal(articles.filter(({ sourceUrl }) => sourceUrl === article.sourceUrl).length, 1);
 
-  const html = await readPage(`articles-media/${rnzSlug}/index.html`);
+  const html = await readPage(`articles-media/${article.slug}/index.html`);
   assert.match(html, /Labour’s \$583m student debt deal/);
-  assert.match(html, /View the original source/);
-  assert.match(html, /The Panel discussion quoting Dave Ananth/);
+  assert.match(html, /Newsroom/);
+  assert.match(html, /Written Newsroom coverage featuring Dave Ananth’s comments/);
+  assert.match(html, /newsroom\.co\.nz\/2026\/09\/29\/labours-583m-student-debt-deal-fails-to-blunt-lure-of-australian-pay/);
 });
 
 test("both 29 September client additions appear once in the archive and sitemap", async () => {
