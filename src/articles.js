@@ -1,10 +1,12 @@
 import { clientMedia } from "./clientMedia.js";
+import { applyProfileAuditCorrections } from "./editorial-corrections.js";
 import { wordpressArticles } from "./wordpressArticles.js";
 import { homeVoiceArticles } from "./homeVoiceArticles.js";
 
 // External records that were never standalone DaveTaxNZ WordPress posts.
 // Keep publisher titles, dates and source URLs exact.
 const externalArticles = [
+  {"slug": "education-post-student-loan-debt-relief", "subject": "Student Loans", "type": "Media Coverage", "publication": "Education Post", "author": "Amin Masoodi", "relationship": "Education Post reporting featuring Dave Ananth’s RNZ comments; Dave is not the author", "date": "28 October 2026", "isoDate": "2026-10-28", "title": "New Zealand lawyer secures $100,000 student loan debt relief", "summary": "Education Post reports on Dave Ananth’s overseas student-loan work following his RNZ Nine to Noon interview.", "detailDescription": "Education Post reports on Dave Ananth’s overseas student-loan work following his RNZ Nine to Noon interview.", "sourceUrl": "https://educationpost.in/news/global-education/new-zealand-lawyer-secures-100000-student-loan-debt-relief"},
   {
     slug: "returning-new-zealand-old-student-loan-five-things",
     subject: "Student Loans",
@@ -205,6 +207,7 @@ function applySeptemberV8Amendments(article) {
 
 const assembledArticles = [...wordpressArticles, ...externalArticles, ...homeVoiceArticles, ...clientMedia]
   .map(applySeptemberV8Amendments)
+  .map(applyProfileAuditCorrections)
   .sort((a, b) => b.isoDate.localeCompare(a.isoDate));
 
 for (const article of assembledArticles) {
