@@ -32,16 +32,13 @@ test("requested podcast pages link Related information to DaveTax contact", asyn
   }
 });
 
-test("all podcasts appear before every non-podcast in the archive", async () => {
-  const firstNonPodcast = archiveArticles.findIndex(({ type }) => type !== "Podcasts");
-  const podcastCount = archiveArticles.filter(({ type }) => type === "Podcasts").length;
-  assert.equal(firstNonPodcast, podcastCount);
-  assert.ok(archiveArticles.slice(0, podcastCount).every(({ type }) => type === "Podcasts"));
-
+test("archive orders all publication types by original date", async () => {
+  for (let i = 1; i < archiveArticles.length; i++) {
+    assert.ok(archiveArticles[i - 1].isoDate >= archiveArticles[i].isoDate);
+  }
   const archive = await readPage("articles-media/index.html");
-  const podcastPositions = archiveArticles
-    .filter(({ type }) => type === "Podcasts")
-    .map(({ title }) => archive.indexOf(title));
-  const firstStandardPosition = archive.indexOf(archiveArticles[podcastCount].title);
-  assert.ok(podcastPositions.every((position) => position >= 0 && position < firstStandardPosition));
+  const dates = [...archive.matchAll(/<time dateTime="([^"]+)"/g)].map(match => match[1]);
+  assert.ok(dates.length > 30);
+  assert.equal(dates[0], "2026-10-28");
+  for (let i = 1; i < dates.length; i++) assert.ok(dates[i - 1] >= dates[i]);
 });

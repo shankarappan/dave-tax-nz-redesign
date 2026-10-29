@@ -218,12 +218,8 @@ for (const article of assembledArticles) {
 
 export const articles = assembledArticles;
 
-// Podcasts lead the complete archive, while the homepage's "latest" preview
-// continues to use the chronological `articles` list.
-export const archiveArticles = [...assembledArticles].sort((a, b) => {
-  const podcastPriority = Number(b.type === "Podcasts") - Number(a.type === "Podcasts");
-  return podcastPriority || b.isoDate.localeCompare(a.isoDate);
-});
+// Client direction, 29 October 2026: current coverage first in every listing.
+export const archiveArticles = [...assembledArticles];
 
 export const subjects = ["Student Loans", "IRD Tax Debt", "Tax Policy", "Crypto Tax", "Other Commentary"];
 export const mediaTypes = ["Articles by Dave", "Media Interviews", "Media Coverage", "Community Columns", "Podcasts"];

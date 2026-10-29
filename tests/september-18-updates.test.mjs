@@ -28,14 +28,15 @@ test("RNZ The Panel entry includes the supplied metadata, summary, link and imag
   assert.ok(image.size > 10_000);
 });
 
-test("the new RNZ podcast leads the podcast-first archive", async () => {
-  assert.equal(archiveArticles[0].slug, slug);
+test("RNZ podcast remains present below newer coverage", async () => {
+  assert.ok(archiveArticles.some(article => article.slug === slug));
+  assert.equal(archiveArticles[0].isoDate, "2026-10-28");
   const archive = await readPage("articles-media/index.html");
   const rnzPosition = archive.indexOf("The Panel with Sue Bradford and David Farrar");
   const priorPodcastPosition = archive.indexOf("Student Loan Arrest Warrants and Airport Enforcement");
   const newestNonPodcastPosition = archive.indexOf("Expats Owing Student Debt Face");
   assert.ok(rnzPosition >= 0 && rnzPosition < priorPodcastPosition);
-  assert.ok(priorPodcastPosition < newestNonPodcastPosition);
+  assert.ok(newestNonPodcastPosition < priorPodcastPosition);
 });
 
 test("Three News image-only media schema contains no VideoObject", async () => {

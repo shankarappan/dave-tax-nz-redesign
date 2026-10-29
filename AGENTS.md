@@ -32,3 +32,6 @@ When implementing from a selected generated mock, treat that image as the source
 - The expanded biography includes Dave’s former adjudicator, Magistrate and Judicial Officer experience, Honorary Consul role, and RSE/trade work. Keep outcome, border, remission and enforcement wording conditional; do not publish “shield”, “secure outcomes”, or “border certainty” promises.
 
 Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts/prepare-sites-build.mjs`, and `tests/sites-worker.test.mjs` intact so the same local prototype can be handed to Sites. Before a Sites handoff, run `npm run build` and `npm run test:sites`; the build must leave `dist/client/index.html`, `dist/server/index.js`, and `dist/.openai/hosting.json`.
+
+## Client direction, 29 October 2026
+Homepage and complete archive must show newest original publication dates first, including media coverage and podcasts. Do not promote older podcasts above newer reporting or change original dates to imply freshness.
