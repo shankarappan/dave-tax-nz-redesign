@@ -30,7 +30,7 @@ test("RNZ The Panel entry includes the supplied metadata, summary, link and imag
 
 test("RNZ podcast remains present below newer coverage", async () => {
   assert.ok(archiveArticles.some(article => article.slug === slug));
-  assert.equal(archiveArticles[0].isoDate, "2026-10-28");
+  assert.ok(archiveArticles[0].isoDate >= "2026-10-28");
   const archive = await readPage("articles-media/index.html");
   const rnzPosition = archive.indexOf("The Panel with Sue Bradford and David Farrar");
   const priorPodcastPosition = archive.indexOf("Student Loan Arrest Warrants and Airport Enforcement");

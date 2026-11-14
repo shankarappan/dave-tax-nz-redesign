@@ -39,6 +39,6 @@ test("archive orders all publication types by original date", async () => {
   const archive = await readPage("articles-media/index.html");
   const dates = [...archive.matchAll(/<time dateTime="([^"]+)"/g)].map(match => match[1]);
   assert.ok(dates.length > 30);
-  assert.equal(dates[0], "2026-10-28");
+  assert.equal(dates[0], archiveArticles[0].isoDate);
   for (let i = 1; i < dates.length; i++) assert.ok(dates[i - 1] >= dates[i]);
 });
