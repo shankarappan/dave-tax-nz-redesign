@@ -222,3 +222,5 @@
   .practice-page__action{align-items:stretch;flex-direction:column;margin-top:58px;padding:28px 22px}
   .practice-page__action .button-row{width:100%}
 }
+
+.tax-debt-video{display:block;width:100%;max-width:420px;height:auto;margin:0 auto 24px;background:#161616}
