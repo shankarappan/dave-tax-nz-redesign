@@ -27,7 +27,7 @@ const pages = [
   { path: "articles-media", title: "Articles & Media Archive | Dave Ananth", description: "Search Dave Ananth’s articles, interviews and media coverage by subject and publication type." },
   { path: "testimonials", title: "Client Testimonials | Dave Ananth", description: "Source-approved client experiences concerning Dave Ananth’s student-loan work." },
   { path: "student-loan-negotiations", title: "Student Loan Negotiations & IRD Help | Dave Ananth", description: "Practical information for overseas New Zealand student-loan borrowers considering engagement, repayment, remission and return-to-New-Zealand risks." },
-  { path: "ird-disputes-tax-penalties-negotiation", title: "IRD Tax Debt Negotiation NZ | Dave Ananth", description: "Practical information about selected Inland Revenue tax-debt, negotiation and enforcement matters for individuals and businesses." },
+  { path: "ird-disputes-tax-penalties-negotiation", title: "IRD Tax Debt Negotiation Lawyer NZ | Dave Ananth", description: "Practical information about selected Inland Revenue tax-debt, negotiation and enforcement matters for individuals and businesses." },
   { path: "terms", title: "Terms of Use | DaveTaxNZ", description: "Terms governing use of the DaveTaxNZ professional information, publication and media platform." },
   { path: "privacy", title: "Privacy Statement | DaveTaxNZ", description: "How DaveTaxNZ handles information provided through this website and its contact channels." },
   { path: "legal-disclaimer", title: "Legal & Engagement Disclaimer | DaveTaxNZ", description: "Important information about general website content, contact, confidentiality and formal legal engagement." },

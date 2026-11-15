@@ -116,7 +116,7 @@ const taxDebtAreas = [
 ];
 
 function TaxDebt() {
-  return <section id="tax-debt" className="expertise tax-debt section-shell section-pad"><div className="section-heading"><p className="eyebrow eyebrow--red">Tax Disputes &amp; IRD Negotiation</p><h2>IRD tax-debt advice and negotiation</h2><p>Dave advises individuals and businesses on tax debt, financial-relief proposals, Inland Revenue disputes and enforcement. He works with the client’s accountant where returns, financial reconstruction or supporting schedules are required.</p></div>
+  return <section id="tax-debt" className="expertise tax-debt section-shell section-pad"><div className="section-heading"><p className="eyebrow eyebrow--red">Tax Disputes &amp; IRD Negotiation</p><h2>IRD tax-debt negotiation lawyer</h2><p>Dave advises individuals and businesses on tax debt, financial-relief proposals, Inland Revenue disputes and enforcement. He works with the client’s accountant where returns, financial reconstruction or supporting schedules are required.</p></div>
     <div className="expertise-grid">{taxDebtAreas.map(({ icon: Icon, title, text }, index) => <div className="expertise-item" key={title}><span className="expertise-item__number">0{index + 1}</span><Icon size={34} weight="light" /><h3>{title}</h3><p>{text}</p></div>)}</div><div className="practice-more"><a className="text-link" href={sitePath("ird-disputes-tax-penalties-negotiation/")}>Read more about IRD tax-debt negotiation <ArrowRight size={18} /></a></div>
   </section>;
 }
@@ -224,7 +224,7 @@ const practicePages = {
   },
   "ird-disputes-tax-penalties-negotiation": {
     eyebrow: "Selected IRD tax-debt matters",
-    title: "Tax Debt, IRD Disputes & Negotiations",
+    title: "IRD Tax Debt Negotiation Lawyer",
     intro: "When Inland Revenue begins issuing demands, penalties or enforcement correspondence, the financial and legal position can escalate quickly. Early review can help identify the facts, deadlines and realistic options.",
     sections: [
       {
