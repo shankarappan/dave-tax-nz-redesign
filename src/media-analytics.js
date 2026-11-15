@@ -21,6 +21,35 @@ export function installMediaAnalytics(measurementId) {
     if (!name && url.hostname === 'players.brightcove.net') name = 'three_news_click';
     if (name) emit(name, destination ? { destination_site: destination } : {});
   });
+  // Native video events use the existing owner-controlled analytics stream.
+  const nativeStarts = new WeakSet();
+  const nativeMilestones = new WeakMap();
+  const nativeFields = video => {
+    const source = video.currentSrc || video.querySelector('source')?.src || video.src;
+    return { video_id: new URL(source, location.href).pathname, video_provider: 'html5' };
+  };
+  document.addEventListener('play', event => {
+    const video = event.target;
+    if (video.tagName !== 'VIDEO' || nativeStarts.has(video)) return;
+    nativeStarts.add(video);
+    emit('media_video_start', nativeFields(video));
+  }, true);
+  document.addEventListener('timeupdate', event => {
+    const video = event.target;
+    if (video.tagName !== 'VIDEO' || !Number.isFinite(video.duration) || video.duration <= 0) return;
+    const marks = nativeMilestones.get(video) || new Set();
+    nativeMilestones.set(video, marks);
+    [25, 50, 75].forEach(mark => {
+      if (video.currentTime / video.duration * 100 >= mark && !marks.has(mark)) {
+        marks.add(mark);
+        emit('media_video_progress', { ...nativeFields(video), video_percent: mark });
+      }
+    });
+  }, true);
+  document.addEventListener('ended', event => {
+    if (event.target.tagName === 'VIDEO') emit('media_video_complete', nativeFields(event.target));
+  }, true);
+
   const attach = () => {
     if (!window.YT?.Player) return;
     document.querySelectorAll('iframe[src*="youtube-nocookie.com/embed/"]').forEach(iframe => {
