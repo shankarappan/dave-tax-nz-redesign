@@ -226,4 +226,4 @@ export const articles = assembledArticles;
 export const archiveArticles = [...assembledArticles];
 
 export const subjects = ["Student Loans", "IRD Tax Debt", "Tax Policy", "Crypto Tax", "Other Commentary"];
-export const mediaTypes = ["Articles by Dave", "Media Interviews", "Media Coverage", "Parliamentary record", "Community Columns", "Podcasts"];
+export const mediaTypes = ["Articles by Dave", "Media Interviews", "Media Coverage", "Parliamentary record", "Community Columns", "Podcasts", "Video"];
