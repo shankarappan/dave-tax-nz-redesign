@@ -7,7 +7,7 @@ test("initial HTML contains substantive production content", async () => {
   assert.match(html, /Student Loan Lawyer NZ and IRD Negotiator/);
   assert.match(html, /Student Loan Debt &amp; Penalties/);
   assert.match(html, /Tax Disputes &amp; IRD Negotiation/);
-  assert.match(html, /IRD tax-debt advice and negotiation/);
+  assert.match(html, /IRD tax-debt negotiation lawyer/);
   assert.match(html, /Read more about student-loan negotiations/);
   assert.match(html, /Read more about IRD tax-debt negotiation/);
   assert.doesNotMatch(html, /Read the fuller overview transferred from Dave’s original/);
