@@ -4,7 +4,7 @@ const firm={'@type':'Organization','@id':'https://mplaw.nz/#organization',name:'
 export function youtubeVideo(id,title,description,url){
  const meta=videoMetadata.find(item=>item.id===id);
  if(!meta?.uploadDate||!meta.thumbnail_url)throw new Error('Verified video metadata missing: '+id);
- return {'@type':'VideoObject','@id':url+'#video-'+id,name:title,description,embedUrl:`https://www.youtube-nocookie.com/embed/${id}`,thumbnailUrl:meta.thumbnail_url,uploadDate:meta.uploadDate,duration:`PT${meta.lengthSeconds}S`,publisher:{'@type':'Organization',name:'Notes From The Executive'},contributor:{'@id':person['@id']},isPartOf:{'@type':'CreativeWork',name:'Notes From The Executive',url:'https://www.youtube.com/watch?v=-l0xlsWFeKw'},mainEntityOfPage:url};
+ return {'@type':'VideoObject','@id':url+'#video-'+id,name:title,description,embedUrl:`https://www.youtube-nocookie.com/embed/${id}`,thumbnailUrl:meta.thumbnail_url,uploadDate:meta.uploadDate,duration:`PT${meta.lengthSeconds}S`,publisher:{'@type':'Organization',name:meta.author_name||'Notes From The Executive'},contributor:{'@id':person['@id']},...(meta.author_name==='Notes From The Executive'?{isPartOf:{'@type':'CreativeWork',name:'Notes From The Executive',url:'https://www.youtube.com/watch?v=-l0xlsWFeKw'}}:{}),mainEntityOfPage:url};
 }
 export function mediaSchema(article,origin,url){
  const isDave=origin==='https://davetaxnz.nz';
