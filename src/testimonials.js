@@ -2,6 +2,12 @@
 // Do not rewrite or combine testimonials.
 export const testimonials = [
   {
+  "name": "Amy Gao",
+  "date": "November 2026",
+  "quote": "A big thank you to Dave for all your help and support. You are such a kind, knowledgeable and professional person, and I’m so glad I found you.\n\nI received a very upsetting email from New Zealand’s Inland Revenue Department (IRD), informing me that I had to repay a student loan from 24 years ago, including 24 years of accumulated interest and penalties. The amount was huge, and I was honestly shocked and worried.\n\nAs I now live in the Netherlands, I had no idea how to deal with this situation or where to turn for help. Luckily, I found Dave through Google and decided to get in touch.\n\nFrom the moment I contacted him, Dave was happy to help. He kept me updated every day, explained the progress and guided me through the whole process. I really appreciated how responsive, patient and helpful he was throughout.\n\nWhat seemed like a very stressful and complicated problem was resolved in just one week, and I couldn’t be happier with the outcome!\n\nThank you so much, Dave. I truly appreciate everything you’ve done for me. It’s not often you come across someone who is not only professional and experienced but also genuinely cares about helping others.\n\nI would happily recommend Dave to anyone who needs help. I hope many more people get the chance to experience the same great service and support.\n\nThanks again, Dave . I’m very grateful!",
+  "sourceUrl": "https://www.google.com/maps/contrib/117932440582358301409/reviews?hl=en-GB"
+},
+  {
     "name": "Annette Flintham",
     "date": "September 2026",
     "quote": "My experience with Dave has without hesitation revived my trust in human nature. This man, a barrister, a professional man, listened, gave me the time and confidence to discuss various issues that have plagued me and my son for many years with no end in sight, no peace was to be had. Dave in his calm relaxed yet professionalism gave sound and encouraging advice. A man I consider a gem to the profession, to his Firm, to himself, someone I would call without a second thought. I cannot rate Dave high enough. Thank you Dave you are etched in my mind for ever."
